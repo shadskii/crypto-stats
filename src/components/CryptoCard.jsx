@@ -4,8 +4,6 @@ import Humanize from 'humanize-plus';
 import '../styles/CryptoCard.css';
 
 export function CryptoCard(props) {
-    var time = new Date(props.info.last_updated);
-    // console.log(props.info.last_updated);
     return (
         <Card>
             <CardHeader
