@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import AppBar from 'material-ui/AppBar';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import FlatButton from 'material-ui/FlatButton';
 import { CryptoCard } from './CryptoCard';
 import '../styles/App.css';
 
@@ -24,7 +25,6 @@ class App extends Component {
           _this.setState({
             coinStats: items
           });
-          console.log("hello" + _this.state.coinStats);
         })
     }
   }
@@ -40,7 +40,12 @@ class App extends Component {
           <AppBar
             title={<span>Crypto Stats</span>}
             showMenuIconButton={false}
-          // iconElementRight={<FlatButton onClick={() => this.fetchNext('reactjs', this.state.lastPostName)} label="next" />
+            iconElementRight={<FlatButton onClick={() => this.refresh(10)} label="Refresh" />
+            }
+          // iconElementRight={
+          //   <IconButton aria-label="Delete">
+          //     <DeleteIcon />
+          //   </IconButton>
           // }
           />
           <div className="container">
