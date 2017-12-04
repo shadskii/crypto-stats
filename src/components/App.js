@@ -1,19 +1,55 @@
 import React, { Component } from 'react';
-import logo from '../logo.svg';
+import AppBar from 'material-ui/AppBar';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import { CryptoCard } from './CryptoCard';
 import '../styles/App.css';
 
+export const API = "https://api.coinmarketcap.com/v1/ticker/?limit=";
+
 class App extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      coinStats: []
+    };
+  }
+
+  refresh(num) {
+    var _this = this;
+    if (num > 0) {
+      fetch(API + num)
+        .then(result => result.json())
+        .then(items => {
+          _this.setState({
+            coinStats: items
+          });
+          console.log("hello" + _this.state.coinStats);
+        })
+    }
+  }
+
+  componentDidMount() {
+    this.refresh(10);
+  }
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+      <MuiThemeProvider>
+        <div>
+          <AppBar
+            title={<span>Crypto Stats</span>}
+            showMenuIconButton={false}
+          // iconElementRight={<FlatButton onClick={() => this.fetchNext('reactjs', this.state.lastPostName)} label="next" />
+          // }
+          />
+          <div className="container">
+            {this.state.coinStats.map(function (el, index) {
+              return <CryptoCard info={el} key={index} />
+            })}
+          </div>
+        </div>
+      </MuiThemeProvider >
     );
   }
 }
