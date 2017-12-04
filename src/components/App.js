@@ -3,6 +3,9 @@ import AppBar from 'material-ui/AppBar';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import FlatButton from 'material-ui/FlatButton';
 import { CryptoCard } from './CryptoCard';
+import { Icon } from 'material-ui';
+import IconButton from 'material-ui/IconButton';
+import CachedIcon from 'material-ui-icons/Cached';
 import '../styles/App.css';
 
 export const API = "https://api.coinmarketcap.com/v1/ticker/?limit=";
@@ -30,7 +33,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.refresh(10);
+    this.refresh(50);
   }
 
   render() {
@@ -40,13 +43,11 @@ class App extends Component {
           <AppBar
             title={<span>Crypto Stats</span>}
             showMenuIconButton={false}
-            iconElementRight={<FlatButton onClick={() => this.refresh(10)} label="Refresh" />
+            iconElementRight={
+              <IconButton onClick={() => this.refresh(10)} aria-label="Delete">
+                <CachedIcon />
+              </IconButton>
             }
-          // iconElementRight={
-          //   <IconButton aria-label="Delete">
-          //     <DeleteIcon />
-          //   </IconButton>
-          // }
           />
           <div className="container">
             {this.state.coinStats.map(function (el, index) {
