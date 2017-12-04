@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import AppBar from 'material-ui/AppBar';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { CryptoCard } from './CryptoCard';
+import NewsPage from './NewsPage';
 import { Icon } from 'material-ui';
 import IconButton from 'material-ui/IconButton';
 import CachedIcon from 'material-ui-icons/Cached';
@@ -51,7 +52,7 @@ class App extends Component {
         })}
       </div>
     } else {
-
+      content = <NewsPage />
     }
 
 
