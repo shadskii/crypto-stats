@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import AppBar from 'material-ui/AppBar';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import FlatButton from 'material-ui/FlatButton';
 import { CryptoCard } from './CryptoCard';
 import { Icon } from 'material-ui';
 import IconButton from 'material-ui/IconButton';
