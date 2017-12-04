@@ -12,10 +12,6 @@ import Paper from 'material-ui/Paper';
 import IconLocationOn from 'material-ui/svg-icons/communication/location-on';
 import '../styles/App.css';
 
-const recentsIcon = <FontIcon className="material-icons">restore</FontIcon>;
-const favoritesIcon = <FontIcon className="material-icons">favorite</FontIcon>;
-const nearbyIcon = <IconLocationOn />;
-
 export const API = "https://api.coinmarketcap.com/v1/ticker/?limit=";
 
 class App extends Component {
@@ -23,9 +19,11 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      selectedIndex: 0,
       coinStats: []
     };
   }
+  select = (index) => this.setState({ selectedIndex: index });
 
   refresh(num) {
     var _this = this;
@@ -45,6 +43,18 @@ class App extends Component {
   }
 
   render() {
+    let content = null;
+    if (this.state.selectedIndex === 0) {
+      content = <div>
+        {this.state.coinStats.map(function (el, index) {
+          return <CryptoCard info={el} key={index} />
+        })}
+      </div>
+    } else {
+
+    }
+
+
     return (
       <MuiThemeProvider>
         <div className="wrapper">
@@ -52,34 +62,26 @@ class App extends Component {
             title={<span>Crypto Stats</span>}
             showMenuIconButton={false}
             iconElementRight={
-              <IconButton onClick={() => this.refresh(10)} aria-label="Delete">
+              <IconButton onClick={() => this.refresh(50)} aria-label="Delete">
                 <CachedIcon />
               </IconButton>
             }
           />
           <div className="container content-scroll">
-            <div>
-              {this.state.coinStats.map(function (el, index) {
-                return <CryptoCard info={el} key={index} />
-              })}
-            </div>
+            {content}
           </div>
+
           <Paper zDepth={3}>
             <BottomNavigation selectedIndex={this.state.selectedIndex}>
               <BottomNavigationItem
-                label="Recents"
-                icon={recentsIcon}
+                label="Prices"
+                icon={<FontIcon className="fa fa-line-chart" />}
                 onClick={() => this.select(0)}
               />
               <BottomNavigationItem
-                label="Favorites"
-                icon={favoritesIcon}
+                label="News"
+                icon={<FontIcon className="fa fa-newspaper-o" />}
                 onClick={() => this.select(1)}
-              />
-              <BottomNavigationItem
-                label="Nearby"
-                icon={nearbyIcon}
-                onClick={() => this.select(2)}
               />
             </BottomNavigation>
           </Paper>
