@@ -5,7 +5,16 @@ import { CryptoCard } from './CryptoCard';
 import { Icon } from 'material-ui';
 import IconButton from 'material-ui/IconButton';
 import CachedIcon from 'material-ui-icons/Cached';
+
+import FontIcon from 'material-ui/FontIcon';
+import { BottomNavigation, BottomNavigationItem } from 'material-ui/BottomNavigation';
+import Paper from 'material-ui/Paper';
+import IconLocationOn from 'material-ui/svg-icons/communication/location-on';
 import '../styles/App.css';
+
+const recentsIcon = <FontIcon className="material-icons">restore</FontIcon>;
+const favoritesIcon = <FontIcon className="material-icons">favorite</FontIcon>;
+const nearbyIcon = <IconLocationOn />;
 
 export const API = "https://api.coinmarketcap.com/v1/ticker/?limit=";
 
@@ -38,7 +47,7 @@ class App extends Component {
   render() {
     return (
       <MuiThemeProvider>
-        <div>
+        <div className="wrapper">
           <AppBar
             title={<span>Crypto Stats</span>}
             showMenuIconButton={false}
@@ -47,13 +56,33 @@ class App extends Component {
                 <CachedIcon />
               </IconButton>
             }
-            style={{ position: "fixed" }}
           />
-          <div style={{ paddingTop: 64 }} className="container">
-            {this.state.coinStats.map(function (el, index) {
-              return <CryptoCard info={el} key={index} />
-            })}
+          <div className="container content-scroll">
+            <div>
+              {this.state.coinStats.map(function (el, index) {
+                return <CryptoCard info={el} key={index} />
+              })}
+            </div>
           </div>
+          <Paper zDepth={3}>
+            <BottomNavigation selectedIndex={this.state.selectedIndex}>
+              <BottomNavigationItem
+                label="Recents"
+                icon={recentsIcon}
+                onClick={() => this.select(0)}
+              />
+              <BottomNavigationItem
+                label="Favorites"
+                icon={favoritesIcon}
+                onClick={() => this.select(1)}
+              />
+              <BottomNavigationItem
+                label="Nearby"
+                icon={nearbyIcon}
+                onClick={() => this.select(2)}
+              />
+            </BottomNavigation>
+          </Paper>
         </div>
       </MuiThemeProvider >
     );

@@ -1,0 +1,10 @@
+.content-scroll{
+  max-height: calc(100vh - (57px + 64px));
+  overflow: auto;
+}
+.wrapper{
+  height: 100vh;
+}
+::-webkit-scrollbar { 
+  display: none; 
+}
