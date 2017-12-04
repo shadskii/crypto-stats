@@ -47,8 +47,9 @@ class App extends Component {
                 <CachedIcon />
               </IconButton>
             }
+            style={{ position: "fixed" }}
           />
-          <div className="container">
+          <div style={{ paddingTop: 64 }} className="container">
             {this.state.coinStats.map(function (el, index) {
               return <CryptoCard info={el} key={index} />
             })}
