@@ -2,12 +2,18 @@ import React, { Component } from 'react';
 import { Card, CardActions, CardHeader, CardText } from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import reddit_icon from '../reddit_icon.png';
+import link_icon from '../link_icon.png';
 
 const REDDIT_ENDPOINT = 'https://www.reddit.com/r/CryptoCurrency.json';
 
 function RedditPost(props) {
     let shouldExpand = props.info.is_self === true;
     let thumb = props.info.thumbnail;
+    if (thumb === 'self') {
+        thumb = reddit_icon;
+    } else if (thumb === 'default') {
+        thumb = link_icon;
+    }
     return (
         <Card className="pad-card">
             <CardHeader
@@ -16,7 +22,7 @@ function RedditPost(props) {
                 subtitle={props.info.author}
                 actAsExpander={shouldExpand}
                 showExpandableButton={shouldExpand}
-                avatar={thumb === 'self' ? reddit_icon : thumb}
+                avatar={thumb}
             />
 
             < CardText expandable={shouldExpand}>
