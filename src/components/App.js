@@ -3,7 +3,6 @@ import AppBar from 'material-ui/AppBar';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import PricePage from './PricePage';
 import NewsPage from './NewsPage';
-import { Icon } from 'material-ui';
 import IconButton from 'material-ui/IconButton';
 import CachedIcon from 'material-ui-icons/Cached';
 
@@ -27,9 +26,8 @@ class App extends Component {
     if (this.state.selectedIndex === 0) {
       content = <PricePage ref={(onRef) => { this.prices = onRef; }} />
     } else {
-      content = <NewsPage />
+      content = <NewsPage ref={(onRef) => { this.news = onRef; }} />
     }
-
 
     return (
       <MuiThemeProvider>
@@ -38,7 +36,13 @@ class App extends Component {
             title={<span>Crypto Stats</span>}
             showMenuIconButton={false}
             iconElementRight={
-              <IconButton onClick={() => this.prices.refresh(50)} aria-label="Refresh">
+              <IconButton onClick={() => {
+                if (this.state.selectedIndex === 0) {
+                  this.prices.refresh(50);
+                } else {
+                  this.news.fetchFirst();
+                }
+              }} aria-label="Refresh">
                 <CachedIcon />
               </IconButton>
             }

@@ -47,6 +47,7 @@ class NewsPage extends Component {
             .then(result => {
                 _this.setState({ posts: result.data.children, lastPostName: result.data.children[result.data.children.length - 1].data.name });
             });
+        console.log('Fetching first news posts');
     }
 
     fetchNext(lastPostName) {
