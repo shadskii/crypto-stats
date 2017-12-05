@@ -1,31 +1,32 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { CryptoCard } from './CryptoCard';
 
 const API = "https://api.coinmarketcap.com/v1/ticker/?limit=";
 class PricePage extends Component {
-
+    static defaultProps = {
+        feedSize: 50
+    }
     constructor(props) {
         super(props);
         this.state = {
             coinStats: []
         };
     }
-    refresh(num) {
+    refresh() {
         var _this = this;
-        if (num > 0) {
-            fetch(API + num)
-                .then(result => result.json())
-                .then(items => {
-                    _this.setState({
-                        coinStats: items
-                    });
-                })
-        }
+        fetch(API + this.props.feedSize)
+            .then(result => result.json())
+            .then(items => {
+                _this.setState({
+                    coinStats: items
+                });
+            })
         console.log('Refreshing prices!')
     }
 
     componentDidMount() {
-        this.refresh(50);
+        this.refresh(this.props.feedSize);
     }
 
     render() {
@@ -37,5 +38,8 @@ class PricePage extends Component {
             </div>
         );
     }
+}
+PricePage.propTypes = {
+    feedSize: PropTypes.number
 }
 export default PricePage;

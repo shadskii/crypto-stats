@@ -24,7 +24,7 @@ class App extends Component {
   render() {
     let content = null;
     if (this.state.selectedIndex === 0) {
-      content = <PricePage ref={(onRef) => { this.prices = onRef; }} />
+      content = <PricePage feedSize={100} ref={(onRef) => { this.prices = onRef; }} />
     } else {
       content = <NewsPage ref={(onRef) => { this.news = onRef; }} />
     }
@@ -38,7 +38,7 @@ class App extends Component {
             iconElementRight={
               <IconButton onClick={() => {
                 if (this.state.selectedIndex === 0) {
-                  this.prices.refresh(50);
+                  this.prices.refresh();
                 } else {
                   this.news.fetchFirst();
                 }
