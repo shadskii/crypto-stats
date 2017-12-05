@@ -61,7 +61,8 @@ class NewsPage extends Component {
         fetch(REDDIT_ENDPOINT + '?count=' + 25 + '&after=' + lastPostName)
             .then(result => result.json())
             .then(result => {
-                _this.setState({ posts: result.data.children, lastPostName: result.data.children[result.data.children.length - 1].data.name });
+                var arr = _this.state.posts.concat(result.data.children);
+                _this.setState({ posts: arr, lastPostName: result.data.children[result.data.children.length - 1].data.name });
             });
     }
     componentWillMount() {
