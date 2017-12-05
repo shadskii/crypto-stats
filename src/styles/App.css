@@ -26,3 +26,6 @@ perm-nav{
   top:0;
   position: fixed;
 }
+.pad-card{
+  margin-top: .4em;
+}

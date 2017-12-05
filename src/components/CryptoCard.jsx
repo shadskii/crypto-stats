@@ -5,7 +5,10 @@ import '../styles/CryptoCard.css';
 
 export function CryptoCard(props) {
     return (
-        <Card>
+        <Card
+            containerStyle={{ paddingBottom: 0 }}
+            className="pad-card"
+        >
             <CardHeader
                 title={props.info.rank + '. ' + props.info.name + ' (' + props.info.symbol + ')'}
                 action={<p> {props.info.rank}</p>}

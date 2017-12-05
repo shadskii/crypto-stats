@@ -9,7 +9,7 @@ function RedditPost(props) {
     let shouldExpand = props.info.is_self === true;
     let thumb = props.info.thumbnail;
     return (
-        <Card className="post-card">
+        <Card className="pad-card">
             <CardHeader
                 title={props.info.title}
 
