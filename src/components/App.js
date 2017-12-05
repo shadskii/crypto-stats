@@ -46,25 +46,28 @@ class App extends Component {
                 <CachedIcon />
               </IconButton>
             }
+            style={{ position: 'fixed' }}
           />
           <div className="container content-scroll">
             {content}
           </div>
 
-          <Paper zDepth={3}>
-            <BottomNavigation selectedIndex={this.state.selectedIndex}>
-              <BottomNavigationItem
-                label="Prices"
-                icon={<FontIcon className="fa fa-line-chart" />}
-                onClick={() => this.select(0)}
-              />
-              <BottomNavigationItem
-                label="News"
-                icon={<FontIcon className="fa fa-newspaper-o" />}
-                onClick={() => this.select(1)}
-              />
-            </BottomNavigation>
-          </Paper>
+          <footer className="foot">
+            <Paper zDepth={3} >
+              <BottomNavigation selectedIndex={this.state.selectedIndex}>
+                <BottomNavigationItem
+                  label="Prices"
+                  icon={<FontIcon className="fa fa-line-chart" />}
+                  onClick={() => this.select(0)}
+                />
+                <BottomNavigationItem
+                  label="News"
+                  icon={<FontIcon className="fa fa-newspaper-o" />}
+                  onClick={() => this.select(1)}
+                />
+              </BottomNavigation>
+            </Paper>
+          </footer>
         </div>
       </MuiThemeProvider >
     );

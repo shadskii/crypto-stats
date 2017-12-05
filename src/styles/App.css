@@ -1,11 +1,28 @@
 .content-scroll{
-  max-height: calc(100vh - (57px + 64px));
-  min-height: calc(100vh - (57px + 64px));
   overflow: auto;
+  min-height: 2em;
+  padding-top: 70px;
+  padding-bottom: 62px;
 }
 .wrapper{
-  height: 100vh;
+  width: 100%;
+  height: 100%;
+
 }
 ::-webkit-scrollbar { 
   display: none; 
+}
+perm-nav{
+  flex-shrink: 0;
+  position: fixed;
+}
+.foot {
+  bottom:0;
+  position:fixed;
+  width: 100%;
+}
+.head{
+  width: 100%;
+  top:0;
+  position: fixed;
 }
