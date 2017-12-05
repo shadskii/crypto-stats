@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import AppBar from 'material-ui/AppBar';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import { CryptoCard } from './CryptoCard';
+import PricePage from './PricePage';
 import NewsPage from './NewsPage';
 import { Icon } from 'material-ui';
 import IconButton from 'material-ui/IconButton';
@@ -10,47 +10,22 @@ import CachedIcon from 'material-ui-icons/Cached';
 import FontIcon from 'material-ui/FontIcon';
 import { BottomNavigation, BottomNavigationItem } from 'material-ui/BottomNavigation';
 import Paper from 'material-ui/Paper';
-import IconLocationOn from 'material-ui/svg-icons/communication/location-on';
 import '../styles/App.css';
-
-export const API = "https://api.coinmarketcap.com/v1/ticker/?limit=";
 
 class App extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      selectedIndex: 0,
-      coinStats: []
+      selectedIndex: 0
     };
   }
   select = (index) => this.setState({ selectedIndex: index });
 
-  refresh(num) {
-    var _this = this;
-    if (num > 0) {
-      fetch(API + num)
-        .then(result => result.json())
-        .then(items => {
-          _this.setState({
-            coinStats: items
-          });
-        })
-    }
-  }
-
-  componentDidMount() {
-    this.refresh(50);
-  }
-
   render() {
     let content = null;
     if (this.state.selectedIndex === 0) {
-      content = <div>
-        {this.state.coinStats.map(function (el, index) {
-          return <CryptoCard info={el} key={index} />
-        })}
-      </div>
+      content = <PricePage ref={(onRef) => { this.prices = onRef; }} />
     } else {
       content = <NewsPage />
     }
@@ -63,7 +38,7 @@ class App extends Component {
             title={<span>Crypto Stats</span>}
             showMenuIconButton={false}
             iconElementRight={
-              <IconButton onClick={() => this.refresh(50)} aria-label="Delete">
+              <IconButton onClick={() => this.prices.refresh(50)} aria-label="Refresh">
                 <CachedIcon />
               </IconButton>
             }

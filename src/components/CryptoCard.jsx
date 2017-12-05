@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, CardHeader, CardText } from 'material-ui/Card';
+import { Card, CardHeader } from 'material-ui/Card';
 import Humanize from 'humanize-plus';
 import '../styles/CryptoCard.css';
 
@@ -40,7 +40,7 @@ function PercentChange(props) {
         <li>
             {props.desc + " "}
             <i className={delta > 0 ? "fa fa-caret-up up fa-lg" : "fa fa-caret-down down fa-lg"} aria-hidden="true"></i>
-            {" " + props.change + '% ' + '($' + Humanize.formatNumber(delta, 2) + ')'}
+            {" " + props.change + '% ($' + Humanize.formatNumber(delta, 2) + ')'}
         </li>
     )
 }
