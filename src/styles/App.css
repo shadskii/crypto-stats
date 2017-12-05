@@ -9,13 +9,7 @@
   height: 100%;
 
 }
-::-webkit-scrollbar { 
-  display: none; 
-}
-perm-nav{
-  flex-shrink: 0;
-  position: fixed;
-}
+
 .foot {
   bottom:0;
   position:fixed;
