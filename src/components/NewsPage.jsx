@@ -1,21 +1,25 @@
 import React, { Component } from 'react';
 import { Card, CardActions, CardHeader, CardText } from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
+import reddit_icon from '../reddit_icon.png';
 
 const REDDIT_ENDPOINT = 'https://www.reddit.com/r/CryptoCurrency.json';
 
-const RedditPost = props => {
+function RedditPost(props) {
+    let shouldExpand = props.info.is_self === true;
+    let thumb = props.info.thumbnail;
     return (
         <Card className="post-card">
             <CardHeader
                 title={props.info.title}
 
                 subtitle={props.info.author}
-                actAsExpander={props.info.is_self === true}
-                showExpandableButton={false}
+                actAsExpander={shouldExpand}
+                showExpandableButton={shouldExpand}
+                avatar={thumb === 'self' ? reddit_icon : thumb}
             />
 
-            <CardText expandable={props.info.is_self === true}>
+            < CardText expandable={shouldExpand}>
                 {props.info.selftext}
             </CardText>
             <CardActions>
@@ -45,15 +49,13 @@ class NewsPage extends Component {
             });
     }
 
-    fetchNext(url, lastPostName) {
+    fetchNext(lastPostName) {
         var _this = this;
-        if (url) {
-            fetch(REDDIT_ENDPOINT + '?count=' + 25 + '&after=' + lastPostName)
-                .then(result => result.json())
-                .then(result => {
-                    _this.setState({ posts: result.data.children, lastPostName: result.data.children[result.data.children.length - 1].data.name });
-                });
-        }
+        fetch(REDDIT_ENDPOINT + '?count=' + 25 + '&after=' + lastPostName)
+            .then(result => result.json())
+            .then(result => {
+                _this.setState({ posts: result.data.children, lastPostName: result.data.children[result.data.children.length - 1].data.name });
+            });
     }
     componentWillMount() {
         this.fetchFirst();
@@ -65,7 +67,7 @@ class NewsPage extends Component {
                 {this.state.posts.map(function (el, index) {
                     return <RedditPost info={el.data} key={index} />
                 })}
-                <FlatButton onClick={() => this.fetchNext('reactjs', this.state.lastPostName)} label="more" />
+                <FlatButton onClick={() => this.fetchNext(this.state.lastPostName)} label="Load More" />
             </div>
         );
     }
