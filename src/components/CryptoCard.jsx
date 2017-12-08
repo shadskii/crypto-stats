@@ -14,7 +14,7 @@ export function CryptoCard(props) {
                 action={<p> {props.info.rank}</p>}
                 subtitle={'Market Cap: $' + Humanize.formatNumber(props.info.market_cap_usd, 2)}
             >
-                <h4>Price: {'$' + props.info.price_usd}</h4>
+                <h4>{'$' + Humanize.formatNumber(props.info.price_usd, 2)}</h4>
 
                 <table style={{ width: '100%' }}>
                     <tr className='table-header'>
@@ -31,7 +31,7 @@ export function CryptoCard(props) {
                             change={props.info.percent_change_7d}
                         />
                     </tr>
-                    <tr>
+                    <tr className='table-content'>
                         <PriceChange
                             price={props.info.price_usd}
                             change={props.info.percent_change_1h}
@@ -55,7 +55,7 @@ function PriceChange(props) {
     var delta = (Number(props.price) * Number(props.change)) / 100;
     return (
         <td style={{ height: '20px' }}>
-            {'$' + Humanize.formatNumber(delta, 2)}
+            {(delta > 0.0 ? '+' : '-') + '$' + Humanize.formatNumber(Math.abs(delta), 2)}
         </td>
     );
 }
