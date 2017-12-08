@@ -11,7 +11,6 @@ export function CryptoCard(props) {
         >
             <CardHeader
                 title={props.info.rank + '. ' + props.info.name + ' (' + props.info.symbol + ')'}
-                action={<p> {props.info.rank}</p>}
                 subtitle={'Market Cap: $' + Humanize.formatNumber(props.info.market_cap_usd, 2)}
             >
                 <h4>{'$' + Humanize.formatNumber(props.info.price_usd, 2)}</h4>
