@@ -16,7 +16,7 @@ function getData(url, format) {
             items.Data.forEach(function (pricePt) {
                 var pt = { x: pricePt.time, y: pricePt.close };
                 update.pricePoints.push(pt);
-                var time = moment.unix(pricePt.time).format(format);
+                var time = moment.unix(pricePt.time).local().format(format);
                 update.labels.push(time);
             });
             return update;
