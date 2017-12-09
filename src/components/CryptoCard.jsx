@@ -1,53 +1,56 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Card, CardHeader } from 'material-ui/Card';
 import Humanize from 'humanize-plus';
 import '../styles/CryptoCard.css';
 
-export function CryptoCard(props) {
-    return (
-        <Card
-            containerStyle={{ paddingBottom: 0 }}
-            className="pad-card"
-        >
-            <CardHeader
-                title={props.info.rank + '. ' + props.info.name + ' (' + props.info.symbol + ')'}
-                subtitle={'Market Cap: $' + Humanize.formatNumber(props.info.market_cap_usd, 2)}
-            >
-                <h4>{'$' + Humanize.formatNumber(props.info.price_usd, 2)}</h4>
+export class CryptoCard extends Component {
 
-                <table style={{ width: '100%' }}>
-                    <tr className='table-header'>
-                        <PriceLabel
-                            desc={'1hr'}
-                            change={props.info.percent_change_1h}
-                        />
-                        <PriceLabel
-                            desc={'24hr'}
-                            change={props.info.percent_change_24h}
-                        />
-                        <PriceLabel
-                            desc={'7d'}
-                            change={props.info.percent_change_7d}
-                        />
-                    </tr>
-                    <tr className='table-content'>
-                        <PriceChange
-                            price={props.info.price_usd}
-                            change={props.info.percent_change_1h}
-                        />
-                        <PriceChange
-                            price={props.info.price_usd}
-                            change={props.info.percent_change_24h}
-                        />
-                        <PriceChange
-                            price={props.info.price_usd}
-                            change={props.info.percent_change_7d}
-                        />
-                    </tr>
-                </table>
-            </CardHeader>
-        </Card>
-    );
+    render() {
+        return (
+            <Card
+                containerStyle={{ paddingBottom: 0 }}
+                className="pad-card"
+            >
+                <CardHeader
+                    title={this.props.info.rank + '. ' + this.props.info.name + ' (' + this.props.info.symbol + ')'}
+                    subtitle={'Market Cap: $' + Humanize.formatNumber(this.props.info.market_cap_usd, 2)}
+                >
+                    <h4>{'$' + Humanize.formatNumber(this.props.info.price_usd, 2)}</h4>
+
+                    <table style={{ width: '100%' }}>
+                        <tr className='table-header'>
+                            <PriceLabel
+                                desc={'1hr'}
+                                change={this.props.info.percent_change_1h}
+                            />
+                            <PriceLabel
+                                desc={'24hr'}
+                                change={this.props.info.percent_change_24h}
+                            />
+                            <PriceLabel
+                                desc={'7d'}
+                                change={this.props.info.percent_change_7d}
+                            />
+                        </tr>
+                        <tr className='table-content'>
+                            <PriceChange
+                                price={this.props.info.price_usd}
+                                change={this.props.info.percent_change_1h}
+                            />
+                            <PriceChange
+                                price={this.props.info.price_usd}
+                                change={this.props.info.percent_change_24h}
+                            />
+                            <PriceChange
+                                price={this.props.info.price_usd}
+                                change={this.props.info.percent_change_7d}
+                            />
+                        </tr>
+                    </table>
+                </CardHeader>
+            </Card >
+        );
+    }
 }
 
 function PriceChange(props) {
