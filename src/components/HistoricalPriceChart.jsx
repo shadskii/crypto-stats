@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Line } from 'react-chartjs-2';
+import moment from 'moment';
 import { historicalHourEndPoint } from '../constants';
 
 
@@ -8,7 +9,10 @@ export default class HistoricalPriceChart extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            pricePoints: []
+            graphData: {
+                pricePoints: [],
+                labels: []
+            }
         }
     }
     refresh() {
@@ -17,18 +21,21 @@ export default class HistoricalPriceChart extends Component {
         fetch(historicalHourEndPoint(this.props.symbol))
             .then(result => result.json())
             .then(items => {
-                var prices = [];
+                var update = {
+                    pricePoints: [],
+                    labels: []
+                };
                 items.Data.forEach(function (pricePt) {
                     var pt = { x: pricePt.time, y: pricePt.close };
-                    prices.push(pt);
-                    console.log(pt);
+                    update.pricePoints.push(pt);
+                    var time = moment.unix(pricePt.time).format('hh:mm:ss');
+                    update.labels.push(time);
                 });
 
                 _this.setState({
-                    pricePoints: prices
+                    graphData: update
                 });
             })
-        console.log('Refreshing prices!')
     }
     componentDidMount() {
         this.refresh();
@@ -36,10 +43,10 @@ export default class HistoricalPriceChart extends Component {
 
     render() {
         var data = {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+            labels: this.state.graphData.labels,
             datasets: [
                 {
-                    label: 'My First dataset',
+                    label: this.props.symbol,
                     fill: true,
                     lineTension: 0.1,
                     backgroundColor: 'rgba(75,192,192,0.4)',
@@ -57,15 +64,14 @@ export default class HistoricalPriceChart extends Component {
                     pointHoverBorderWidth: 2,
                     pointRadius: 1,
                     pointHitRadius: 10,
-                    data: this.state.pricePoints
+                    data: this.state.graphData.pricePoints
                 }
             ]
         };
-
+        console.log('redraw');
         return (
             <div>
-                {/* <h2>Line Example</h2> */}
-                <Line data={data} legend={{ display: 'false' }} />
+                <Line data={data} legend={{ display: false }} />
             </div>
         );
     }
