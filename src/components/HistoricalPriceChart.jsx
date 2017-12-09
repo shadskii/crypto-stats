@@ -30,7 +30,10 @@ export default class HistoricalPriceChart extends Component {
                         pricePoints: update.pricePoints.slice(0, 60),
                         labels: update.labels.slice(0, 60)
                     },
-                    update
+                    {
+                        pricePoints: update.pricePoints.filter((element, index, array) => (index % 10 === 0)),
+                        labels: update.labels.filter((element, index, array) => (index % 10 === 0))
+                    }
                 ]
             });
         });
