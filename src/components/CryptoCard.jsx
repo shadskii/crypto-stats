@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Card, CardHeader } from 'material-ui/Card';
+import { Card, CardHeader, CardText } from 'material-ui/Card';
 import Humanize from 'humanize-plus';
+import HistoricalPriceChart from './HistoricalPriceChart';
 import '../styles/CryptoCard.css';
 
 export class CryptoCard extends Component {
@@ -14,40 +15,48 @@ export class CryptoCard extends Component {
                 <CardHeader
                     title={this.props.info.rank + '. ' + this.props.info.name + ' (' + this.props.info.symbol + ')'}
                     subtitle={'Market Cap: $' + Humanize.formatNumber(this.props.info.market_cap_usd, 2)}
+                    showExpandableButton={true}
                 >
                     <h4>{'$' + Humanize.formatNumber(this.props.info.price_usd, 2)}</h4>
 
                     <table style={{ width: '100%' }}>
-                        <tr className='table-header'>
-                            <PriceLabel
-                                desc={'1hr'}
-                                change={this.props.info.percent_change_1h}
-                            />
-                            <PriceLabel
-                                desc={'24hr'}
-                                change={this.props.info.percent_change_24h}
-                            />
-                            <PriceLabel
-                                desc={'7d'}
-                                change={this.props.info.percent_change_7d}
-                            />
-                        </tr>
-                        <tr className='table-content'>
-                            <PriceChange
-                                price={this.props.info.price_usd}
-                                change={this.props.info.percent_change_1h}
-                            />
-                            <PriceChange
-                                price={this.props.info.price_usd}
-                                change={this.props.info.percent_change_24h}
-                            />
-                            <PriceChange
-                                price={this.props.info.price_usd}
-                                change={this.props.info.percent_change_7d}
-                            />
-                        </tr>
+                        <tbody>
+                            <tr className='table-header'>
+                                <PriceLabel
+                                    desc={'1hr'}
+                                    change={this.props.info.percent_change_1h}
+                                />
+                                <PriceLabel
+                                    desc={'24hr'}
+                                    change={this.props.info.percent_change_24h}
+                                />
+                                <PriceLabel
+                                    desc={'7d'}
+                                    change={this.props.info.percent_change_7d}
+                                />
+                            </tr>
+                            <tr className='table-content'>
+                                <PriceChange
+                                    price={this.props.info.price_usd}
+                                    change={this.props.info.percent_change_1h}
+                                />
+                                <PriceChange
+                                    price={this.props.info.price_usd}
+                                    change={this.props.info.percent_change_24h}
+                                />
+                                <PriceChange
+                                    price={this.props.info.price_usd}
+                                    change={this.props.info.percent_change_7d}
+                                />
+                            </tr>
+                        </tbody>
                     </table>
                 </CardHeader>
+                <CardText
+                    expandable={true}
+                >
+                    <HistoricalPriceChart symbol={this.props.info.symbol} />
+                </CardText>
             </Card >
         );
     }
