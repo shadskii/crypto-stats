@@ -1,17 +1,7 @@
 import React, { Component } from 'react';
 import { Line } from 'react-chartjs-2';
-import moment from 'moment';
-import { historicalHourEndPoint } from '../constants';
 import FlatButton from 'material-ui/FlatButton';
-
-import FontIcon from 'material-ui/FontIcon';
-import { BottomNavigation, BottomNavigationItem } from 'material-ui/BottomNavigation';
-import Paper from 'material-ui/Paper';
-import IconLocationOn from 'material-ui/svg-icons/communication/location-on';
-
-const recentsIcon = <FontIcon className="material-icons">restore</FontIcon>;
-const favoritesIcon = <FontIcon className="material-icons">favorite</FontIcon>;
-const nearbyIcon = <IconLocationOn />;
+import { historical24Hour } from '../dataSources';
 
 export default class HistoricalPriceChart extends Component {
 
@@ -19,41 +9,41 @@ export default class HistoricalPriceChart extends Component {
         super(props);
         this.state = {
             graphSelect: 0,
-            graphData: {
-                pricePoints: [],
-                labels: []
-            }
+            data: [
+                {
+                    pricePoints: [],
+                    labels: []
+                },
+                {
+                    pricePoints: [],
+                    labels: []
+                }
+            ],
         }
     }
     refresh() {
         var _this = this;
-        fetch(historicalHourEndPoint(this.props.symbol))
-            .then(result => result.json())
-            .then(items => {
-                var update = {
-                    pricePoints: [],
-                    labels: []
-                };
-                items.Data.forEach(function (pricePt) {
-                    var pt = { x: pricePt.time, y: pricePt.close };
-                    update.pricePoints.push(pt);
-                    var time = moment.unix(pricePt.time).format('hh:mm:ss');
-                    update.labels.push(time);
-                });
-
-                _this.setState({
-                    graphData: update
-                });
-            })
+        historical24Hour(this.props.symbol).then(update => {
+            _this.setState({
+                data: [
+                    {
+                        pricePoints: update.pricePoints.slice(0, 60),
+                        labels: update.labels.slice(0, 60)
+                    },
+                    update
+                ]
+            });
+        });
     }
     componentDidMount() {
         this.refresh();
     }
 
     select = (index) => this.setState({ graphSelect: index });
+
     render() {
         var data = {
-            labels: this.state.graphData.labels,
+            labels: this.state.data[this.state.graphSelect].labels,
             datasets: [
                 {
                     label: this.props.symbol,
@@ -74,7 +64,7 @@ export default class HistoricalPriceChart extends Component {
                     pointHoverBorderWidth: 2,
                     pointRadius: 1,
                     pointHitRadius: 10,
-                    data: this.state.graphData.pricePoints,
+                    data: this.state.data[this.state.graphSelect].pricePoints,
                     cubicInterpolationMode: 'monotone'
                 }
             ]
@@ -82,10 +72,10 @@ export default class HistoricalPriceChart extends Component {
         console.log('redraw');
         return (
             <div>
-                <Line data={data} legend={{ display: false }} />
+                <h5>{this.state.graphSelect === 0 ? '1 Hour Graph' : '24 Hour Graph'}</h5>
+                <Line data={data} legend={{ display: false }} redraw />
                 <FlatButton label="1 Hour" primary={this.state.graphSelect === 0} onClick={() => this.select(0)} />
                 <FlatButton label="24 Hour" primary={this.state.graphSelect === 1} onClick={() => this.select(1)} />
-                <FlatButton label="7 Day" primary={this.state.graphSelect === 2} onClick={() => this.select(2)} />
             </div>
         );
     }
