@@ -27,8 +27,8 @@ export default class HistoricalPriceChart extends Component {
             _this.setState({
                 data: [
                     {
-                        pricePoints: update.pricePoints.slice(0, 60),
-                        labels: update.labels.slice(0, 60)
+                        pricePoints: update.pricePoints.slice(60),
+                        labels: update.labels.slice(60)
                     },
                     {
                         pricePoints: update.pricePoints.filter((element, index, array) => (index % 10 === 0)),
