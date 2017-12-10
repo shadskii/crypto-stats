@@ -1,5 +1,5 @@
 import moment from 'moment';
-
+import coinSymbols from './coinSymbols.json'
 
 function historicalHourEndPoint(symbol, limit) {
     return "https://min-api.cryptocompare.com/data/histominute?fsym=" + symbol + "&tsym=USD&limit=" + limit + "&aggregate=1&e=CCCAGG";
@@ -29,4 +29,8 @@ export function historical1Hour(symbol) {
 
 export function historical24Hour(symbol) {
     return getData(historicalHourEndPoint(symbol, 1440), 'Do hh:mm');
+}
+
+export function coinLogoUrl(symbol) {
+    return coinSymbols[symbol] ? coinSymbols['BaseImageUrl'] + coinSymbols[symbol] : null;
 }

@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import { Card, CardHeader, CardText } from 'material-ui/Card';
 import Humanize from 'humanize-plus';
 import HistoricalPriceChart from './HistoricalPriceChart';
+import { coinLogoUrl } from '../dataSources';
 import '../styles/CryptoCard.css';
 
 export class CryptoCard extends Component {
+
 
     render() {
         return (
@@ -14,7 +16,10 @@ export class CryptoCard extends Component {
             >
                 <CardHeader
                     title={this.props.info.rank + '. ' + this.props.info.name + ' (' + this.props.info.symbol + ')'}
+                    titleStyle={{ fontSize: '1.3em' }}
                     subtitle={'Market Cap: $' + Humanize.formatNumber(this.props.info.market_cap_usd, 2)}
+                    subtitleStyle={{ fontSize: '1em' }}
+                    avatar={coinLogoUrl(this.props.info.symbol)}
                     showExpandableButton={true}
                 >
                     <h4>{'$' + Humanize.formatNumber(this.props.info.price_usd, 2)}</h4>
