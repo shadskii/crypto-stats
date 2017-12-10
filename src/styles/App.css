@@ -3,6 +3,8 @@
   min-height: 2em;
   padding-top: 70px;
   padding-bottom: 62px;
+  width: 100%;
+  overflow-x: hidden;
 }
 .wrapper{
   width: 100%;
