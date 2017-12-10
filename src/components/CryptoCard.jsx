@@ -15,7 +15,7 @@ export class CryptoCard extends Component {
                 className="pad-card"
             >
                 <CardHeader
-                    title={this.props.info.rank + '. ' + this.props.info.name + ' (' + this.props.info.symbol + ')'}
+                    title={this.props.info.name + ' (' + this.props.info.symbol + ')'}
                     titleStyle={{ fontSize: '1.3em' }}
                     subtitle={'Market Cap: $' + Humanize.formatNumber(this.props.info.market_cap_usd, 2)}
                     subtitleStyle={{ fontSize: '1em' }}
