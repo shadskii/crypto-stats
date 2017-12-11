@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
 import { Line } from 'react-chartjs-2';
+import CircularProgress from 'material-ui/CircularProgress';
 import FlatButton from 'material-ui/FlatButton';
 import { historical24Hour } from '../dataSources';
+import '../styles/HistoricalPriceChart.css';
 
 export default class HistoricalPriceChart extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
+            fetchingData: true,
             graphSelect: 0,
             data: [
                 {
@@ -34,7 +37,8 @@ export default class HistoricalPriceChart extends Component {
                         pricePoints: update.pricePoints.filter((element, index, array) => (index % 10 === 0)),
                         labels: update.labels.filter((element, index, array) => (index % 10 === 0))
                     }
-                ]
+                ],
+                fetchingData: false
             });
         });
     }
@@ -74,8 +78,11 @@ export default class HistoricalPriceChart extends Component {
         };
         console.log('redraw');
         return (
-            <div>
+            <div className='float-container'>
                 <h5>{this.state.graphSelect === 0 ? '1 Hour Graph' : '24 Hour Graph'}</h5>
+                {this.state.fetchingData &&
+                    <CircularProgress className='above-content' size={50} thickness={5} />
+                }
                 <Line data={data} legend={{ display: false }} redraw />
                 <FlatButton label="1 Hour" primary={this.state.graphSelect === 0} onClick={() => this.select(0)} />
                 <FlatButton label="24 Hour" primary={this.state.graphSelect === 1} onClick={() => this.select(1)} />
