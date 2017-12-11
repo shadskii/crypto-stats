@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import AppBar from 'material-ui/AppBar';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
 import PricePage from './PricePage';
 import NewsPage from './NewsPage';
 import IconButton from 'material-ui/IconButton';
@@ -30,46 +30,44 @@ class App extends Component {
     }
 
     return (
-      <MuiThemeProvider>
-        <div className="wrapper">
-          <AppBar
-            title={<span>Crypto Stats</span>}
-            showMenuIconButton={false}
-            iconElementRight={
-              <IconButton onClick={() => {
-                if (this.state.selectedIndex === 0) {
-                  this.prices.refresh();
-                } else {
-                  this.news.fetchFirst();
-                }
-              }} aria-label="Refresh">
-                <CachedIcon />
-              </IconButton>
-            }
-            style={{ position: 'fixed' }}
-          />
-          <div className="content-scroll">
-            {content}
-          </div>
-
-          <footer className="foot">
-            <Paper zDepth={3} >
-              <BottomNavigation selectedIndex={this.state.selectedIndex}>
-                <BottomNavigationItem
-                  label="Prices"
-                  icon={<FontIcon className="fa fa-line-chart" />}
-                  onClick={() => this.select(0)}
-                />
-                <BottomNavigationItem
-                  label="News"
-                  icon={<FontIcon className="fa fa-newspaper-o" />}
-                  onClick={() => this.select(1)}
-                />
-              </BottomNavigation>
-            </Paper>
-          </footer>
+      <div className="wrapper">
+        <AppBar
+          title={<span>Crypto Stats</span>}
+          showMenuIconButton={false}
+          iconElementRight={
+            <IconButton onClick={() => {
+              if (this.state.selectedIndex === 0) {
+                this.prices.refresh();
+              } else {
+                this.news.fetchFirst();
+              }
+            }} aria-label="Refresh">
+              <CachedIcon />
+            </IconButton>
+          }
+          style={{ position: 'fixed' }}
+        />
+        <div className="content-scroll">
+          {content}
         </div>
-      </MuiThemeProvider >
+
+        <footer className="foot">
+          <Paper zDepth={3} >
+            <BottomNavigation selectedIndex={this.state.selectedIndex}>
+              <BottomNavigationItem
+                label="Prices"
+                icon={<FontIcon className="fa fa-line-chart" />}
+                onClick={() => this.select(0)}
+              />
+              <BottomNavigationItem
+                label="News"
+                icon={<FontIcon className="fa fa-newspaper-o" />}
+                onClick={() => this.select(1)}
+              />
+            </BottomNavigation>
+          </Paper>
+        </footer>
+      </div>
     );
   }
 }
