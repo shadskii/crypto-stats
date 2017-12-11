@@ -31,12 +31,14 @@ class PricePage extends Component {
 
     render() {
         return (
-            <div className='row'>
-                {this.state.coinStats.map(function (el, index) {
-                    return <div key={index} className='col-md-6'>
-                        <CryptoCard info={el} />
-                    </div>
-                })}
+            <div className='container-fluid'>
+                <div className='row'>
+                    {this.state.coinStats.map(function (el, index) {
+                        return <div key={index} className='col-md-6'>
+                            <CryptoCard info={el} />
+                        </div>
+                    })}
+                </div>
             </div>
         );
     }
