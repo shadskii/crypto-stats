@@ -28,7 +28,7 @@ export function historical1Hour(symbol) {
 }
 
 export function historical24Hour(symbol) {
-    return getData(historicalHourEndPoint(symbol, 1440), 'Do hh:mm');
+    return getData(historicalHourEndPoint(symbol, 1440), 'hh:mm');
 }
 
 export function coinLogoUrl(symbol) {
