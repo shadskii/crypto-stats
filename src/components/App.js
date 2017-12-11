@@ -48,7 +48,7 @@ class App extends Component {
             }
             style={{ position: 'fixed' }}
           />
-          <div className="container-fluid content-scroll">
+          <div className="content-scroll">
             {content}
           </div>
 

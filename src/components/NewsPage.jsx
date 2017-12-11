@@ -4,6 +4,7 @@ import FlatButton from 'material-ui/FlatButton';
 import reddit_icon from '../reddit_icon.png';
 import link_icon from '../link_icon.png';
 
+
 const REDDIT_ENDPOINT = 'https://www.reddit.com/r/CryptoCurrency.json';
 
 function RedditPost(props) {
@@ -71,12 +72,16 @@ class NewsPage extends Component {
 
     render() {
         return (
-            <div>
-                {this.state.posts.map(function (el, index) {
-                    return <RedditPost info={el.data} key={index} />
-                })}
-                <FlatButton onClick={() => this.fetchNext(this.state.lastPostName)} label="Load More" />
-            </div>
+            <div className='container'>
+                <div className='row'>
+                    {this.state.posts.map(function (el, index) {
+                        return <div className='col-md-12 '>
+                            <RedditPost info={el.data} key={index} />
+                        </div>
+                    })}
+                    <FlatButton className='col-md-12' onClick={() => this.fetchNext(this.state.lastPostName)} label="Load More" />
+                </div>
+            </div >
         );
     }
 }
