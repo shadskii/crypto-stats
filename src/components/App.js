@@ -34,6 +34,7 @@ class App extends Component {
         <AppBar
           title={<span>Crypto Stats</span>}
           showMenuIconButton={false}
+          style={{ position: 'fixed' }}
           iconElementRight={
             <IconButton onClick={() => {
               if (this.state.selectedIndex === 0) {
@@ -45,7 +46,6 @@ class App extends Component {
               <CachedIcon />
             </IconButton>
           }
-          style={{ position: 'fixed' }}
         />
         {content}
 
