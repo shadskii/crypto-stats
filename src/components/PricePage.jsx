@@ -31,7 +31,7 @@ class PricePage extends Component {
 
     render() {
         return (
-            <div className='container-fluid'>
+            <div className='container-fluid content-scroll'>
                 <div className='row'>
                     {this.state.coinStats.map(function (el, index) {
                         return <div key={index} className='col-md-6'>

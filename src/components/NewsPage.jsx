@@ -72,7 +72,7 @@ class NewsPage extends Component {
 
     render() {
         return (
-            <div className='container'>
+            <div className='container content-scroll'>
                 <div className='row'>
                     {this.state.posts.map(function (el, index) {
                         return <div className='col-md-12 '>

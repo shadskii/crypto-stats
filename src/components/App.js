@@ -47,9 +47,7 @@ class App extends Component {
           }
           style={{ position: 'fixed' }}
         />
-        <div className="content-scroll">
-          {content}
-        </div>
+        {content}
 
         <footer className="foot">
           <Paper zDepth={3} >
