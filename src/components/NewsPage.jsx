@@ -19,7 +19,6 @@ function RedditPost(props) {
         <Card className="pad-card">
             <CardHeader
                 title={props.info.title}
-
                 subtitle={props.info.author}
                 actAsExpander={shouldExpand}
                 showExpandableButton={shouldExpand}
@@ -75,8 +74,8 @@ class NewsPage extends Component {
             <div className='container content-scroll'>
                 <div className='row'>
                     {this.state.posts.map(function (el, index) {
-                        return <div className='col-md-12 '>
-                            <RedditPost info={el.data} key={index} />
+                        return <div className='col-md-12' key={index}>
+                            <RedditPost info={el.data} />
                         </div>
                     })}
                     <FlatButton className='col-md-12' onClick={() => this.fetchNext(this.state.lastPostName)} label="Load More" />
