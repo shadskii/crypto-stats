@@ -15,24 +15,18 @@ class App extends Component {
     super(props);
   }
 
-
   render() {
     let BottomNav = withRouter(({ history, location }) =>
       <BottomNavigation selectedIndex={location.pathname === '/news' ? 1 : 0}>
         <BottomNavigationItem
           label="Prices"
           icon={<FontIcon className="fa fa-line-chart" />}
-          onClick={() => {
-            console.log(location);
-            history.push('/');
-          }}
+          onClick={() => { history.push('/') }}
         />
         <BottomNavigationItem
           label="News"
           icon={<FontIcon className="fa fa-newspaper-o" />}
-          onClick={() => {
-            history.push('/news');
-          }}
+          onClick={() => { history.push('/news') }}
         />
       </BottomNavigation>
     );
@@ -44,7 +38,6 @@ class App extends Component {
           title={<span>Crypto Stats</span>}
           showMenuIconButton={false}
           style={{ position: 'fixed' }}
-
         />
 
         <Switch>
