@@ -3,9 +3,7 @@ import AppBar from 'material-ui/AppBar';
 
 import PricePage from './PricePage';
 import NewsPage from './NewsPage';
-import IconButton from 'material-ui/IconButton';
-import CachedIcon from 'material-ui-icons/Cached';
-
+import { Switch, Route, withRouter } from 'react-router-dom'
 import FontIcon from 'material-ui/FontIcon';
 import { BottomNavigation, BottomNavigationItem } from 'material-ui/BottomNavigation';
 import Paper from 'material-ui/Paper';
@@ -15,54 +13,48 @@ class App extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      selectedIndex: 0
-    };
   }
-  select = (index) => this.setState({ selectedIndex: index });
+
 
   render() {
-    let content = null;
-    if (this.state.selectedIndex === 0) {
-      content = <PricePage feedSize={100} ref={(onRef) => { this.prices = onRef; }} />
-    } else {
-      content = <NewsPage ref={(onRef) => { this.news = onRef; }} />
-    }
+    let BottomNav = withRouter(({ history, location }) =>
+      <BottomNavigation selectedIndex={location.pathname === '/news' ? 1 : 0}>
+        <BottomNavigationItem
+          label="Prices"
+          icon={<FontIcon className="fa fa-line-chart" />}
+          onClick={() => {
+            console.log(location);
+            history.push('/');
+          }}
+        />
+        <BottomNavigationItem
+          label="News"
+          icon={<FontIcon className="fa fa-newspaper-o" />}
+          onClick={() => {
+            history.push('/news');
+          }}
+        />
+      </BottomNavigation>
+    );
 
     return (
+
       <div className="wrapper">
         <AppBar
           title={<span>Crypto Stats</span>}
           showMenuIconButton={false}
           style={{ position: 'fixed' }}
-          iconElementRight={
-            <IconButton onClick={() => {
-              if (this.state.selectedIndex === 0) {
-                this.prices.refresh();
-              } else {
-                this.news.fetchFirst();
-              }
-            }} aria-label="Refresh">
-              <CachedIcon />
-            </IconButton>
-          }
+
         />
-        {content}
+
+        <Switch>
+          <Route exact path='/' component={PricePage} />
+          <Route path='/news' component={NewsPage} />
+        </Switch>
 
         <footer className="foot">
           <Paper zDepth={3} >
-            <BottomNavigation selectedIndex={this.state.selectedIndex}>
-              <BottomNavigationItem
-                label="Prices"
-                icon={<FontIcon className="fa fa-line-chart" />}
-                onClick={() => this.select(0)}
-              />
-              <BottomNavigationItem
-                label="News"
-                icon={<FontIcon className="fa fa-newspaper-o" />}
-                onClick={() => this.select(1)}
-              />
-            </BottomNavigation>
+            <BottomNav />
           </Paper>
         </footer>
       </div>
