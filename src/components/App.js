@@ -29,7 +29,7 @@ class App extends Component {
     return (
       <div className="wrapper">
         <AppBar
-          title={<span>Crypto Stats</span>}
+          title={'Crypto Stats'}
           showMenuIconButton={false}
           style={{ position: 'fixed' }}
         />
