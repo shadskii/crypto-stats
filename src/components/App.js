@@ -9,30 +9,24 @@ import { BottomNavigation, BottomNavigationItem } from 'material-ui/BottomNaviga
 import Paper from 'material-ui/Paper';
 import '../styles/App.css';
 
+const BottomNav = withRouter(({ history, location }) =>
+  <BottomNavigation selectedIndex={location.pathname === '/news' ? 1 : 0}>
+    <BottomNavigationItem
+      label="Prices"
+      icon={<FontIcon className="fa fa-line-chart" />}
+      onClick={() => { history.push('/') }}
+    />
+    <BottomNavigationItem
+      label="News"
+      icon={<FontIcon className="fa fa-newspaper-o" />}
+      onClick={() => { history.push('/news') }}
+    />
+  </BottomNavigation>
+);
+
 class App extends Component {
-
-  constructor(props) {
-    super(props);
-  }
-
   render() {
-    let BottomNav = withRouter(({ history, location }) =>
-      <BottomNavigation selectedIndex={location.pathname === '/news' ? 1 : 0}>
-        <BottomNavigationItem
-          label="Prices"
-          icon={<FontIcon className="fa fa-line-chart" />}
-          onClick={() => { history.push('/') }}
-        />
-        <BottomNavigationItem
-          label="News"
-          icon={<FontIcon className="fa fa-newspaper-o" />}
-          onClick={() => { history.push('/news') }}
-        />
-      </BottomNavigation>
-    );
-
     return (
-
       <div className="wrapper">
         <AppBar
           title={<span>Crypto Stats</span>}
