@@ -7,7 +7,6 @@ import '../styles/CryptoCard.css';
 
 export class CryptoCard extends Component {
 
-
     render() {
         return (
             <Card
