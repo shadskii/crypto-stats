@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import CircularProgress from 'material-ui/CircularProgress';
 import { CryptoCard } from './CryptoCard';
 
 const API = "https://api.coinmarketcap.com/v1/ticker/?limit=";
@@ -10,16 +11,19 @@ class PricePage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            coinStats: []
+            coinStats: [],
+            fetchingData: true
         };
     }
     refresh() {
+        this.setState({ fetchingData: true })
         var _this = this;
         fetch(API + this.props.feedSize)
             .then(result => result.json())
             .then(items => {
                 _this.setState({
-                    coinStats: items
+                    coinStats: items,
+                    fetchingData: false
                 });
             })
         console.log('Refreshing prices!')
@@ -33,11 +37,17 @@ class PricePage extends Component {
         return (
             <div className='container-fluid content-scroll'>
                 <div className='row'>
-                    {this.state.coinStats.map(function (el, index) {
-                        return <div key={index} className='col-md-6'>
-                            <CryptoCard info={el} />
-                        </div>
-                    })}
+                    {this.state.fetchingData ?
+                        (<div className='center-content'>
+                            <CircularProgress size={80} thickness={7} />
+                        </div>)
+                        :
+                        (this.state.coinStats.map(function (el, index) {
+                            return <div key={index} className='col-md-6'>
+                                <CryptoCard info={el} />
+                            </div>
+                        }))
+                    }
                 </div>
             </div>
         );
