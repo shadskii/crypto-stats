@@ -17,7 +17,7 @@ export class CryptoCard extends Component {
                     title={this.props.info.name + ' (' + this.props.info.symbol + ')'}
                     titleStyle={{ fontSize: '1.3em' }}
                     subtitle={this.props.info.rank + ': Market Cap: $' + Humanize.formatNumber(this.props.info.market_cap_usd, 2)}
-                    subtitleStyle={{ fontSize: '1em' }}
+                    subtitleStyle={{ fontSize: '.9em' }}
                     avatar={coinLogoUrl(this.props.info.symbol)}
                     showExpandableButton={true}
                 >
