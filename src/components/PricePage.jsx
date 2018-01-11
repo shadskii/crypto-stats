@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import CircularProgress from 'material-ui/CircularProgress';
+import FlatButton from 'material-ui/FlatButton';
 import { CryptoCard } from './CryptoCard';
 
 const API = "https://api.coinmarketcap.com/v1/ticker/?limit=";
@@ -29,6 +30,20 @@ class PricePage extends Component {
         console.log('Refreshing prices!')
     }
 
+    fetchMore() {
+        var _this = this;
+        fetch(API + this.props.feedSize + '&start=' + this.state.coinStats.length)
+            .then(result => result.json())
+            .then(items => {
+                var updated = this.state.coinStats.concat(items);
+                _this.setState({
+                    coinStats: updated
+                });
+            });
+        console.log('Adding more prices');
+    }
+
+
     componentDidMount() {
         this.refresh(this.props.feedSize);
     }
@@ -48,6 +63,7 @@ class PricePage extends Component {
                             </div>
                         }))
                     }
+                    <FlatButton className='col-md-12' onClick={() => this.fetchMore()} label="Load More" />
                 </div>
             </div>
         );
