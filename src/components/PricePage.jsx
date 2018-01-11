@@ -9,6 +9,7 @@ class PricePage extends Component {
     static defaultProps = {
         feedSize: 50
     }
+
     constructor(props) {
         super(props);
         this.state = {
@@ -42,7 +43,6 @@ class PricePage extends Component {
             });
         console.log('Adding more prices');
     }
-
 
     componentDidMount() {
         this.refresh(this.props.feedSize);
