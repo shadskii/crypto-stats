@@ -3,26 +3,10 @@ import AppBar from 'material-ui/AppBar';
 
 import PricePage from './PricePage';
 import NewsPage from './NewsPage';
-import { Switch, Route, withRouter } from 'react-router-dom'
-import FontIcon from 'material-ui/FontIcon';
-import { BottomNavigation, BottomNavigationItem } from 'material-ui/BottomNavigation';
+import { Switch, Route } from 'react-router-dom'
 import Paper from 'material-ui/Paper';
+import BottomNav from './BottomNav';
 import '../styles/App.css';
-
-const BottomNav = withRouter(({ history, location }) =>
-  <BottomNavigation selectedIndex={location.pathname === '/news' ? 1 : 0}>
-    <BottomNavigationItem
-      label="Prices"
-      icon={<FontIcon className="fa fa-line-chart" />}
-      onClick={() => { history.push('/') }}
-    />
-    <BottomNavigationItem
-      label="News"
-      icon={<FontIcon className="fa fa-newspaper-o" />}
-      onClick={() => { history.push('/news') }}
-    />
-  </BottomNavigation>
-);
 
 class App extends Component {
   render() {
