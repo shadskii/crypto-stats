@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import AppBar from 'material-ui/AppBar';
+import { Switch, Route } from 'react-router-dom'
+import Paper from 'material-ui/Paper';
 
 import PricePage from './PricePage';
 import NewsPage from './NewsPage';
-import { Switch, Route } from 'react-router-dom'
-import Paper from 'material-ui/Paper';
 import BottomNav from './BottomNav';
 import '../styles/App.css';
 
