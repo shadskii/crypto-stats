@@ -24,3 +24,8 @@
 .pad-card{
   margin-top: .4em;
 }
+.center-content{
+  position: absolute;
+  top: 20em;
+  left: calc(50% - 3.0em);
+}

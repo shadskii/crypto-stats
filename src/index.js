@@ -4,12 +4,12 @@ import './index.css';
 import App from './components/App';
 import registerServiceWorker from './registerServiceWorker';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import { BrowserRouter } from 'react-router-dom'
+import { HashRouter as Router } from 'react-router-dom'
 
 ReactDOM.render(
-    <BrowserRouter>
+    <Router>
         <MuiThemeProvider>
             <App />
         </MuiThemeProvider>
-    </BrowserRouter>, document.getElementById('root'));
+    </Router>, document.getElementById('root'));
 registerServiceWorker();
