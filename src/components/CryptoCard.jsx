@@ -22,7 +22,7 @@ export class CryptoCard extends Component {
                     showExpandableButton={true}
                 >
                     <h4>{'$' + Humanize.formatNumber(this.props.info.price_usd, 2)}</h4>
-
+                    <h6>{Humanize.formatNumber(this.props.info.price_btc, 8) + ' BTC'}</h6>
                     <table style={{ width: '100%' }}>
                         <tbody>
                             <tr className='table-header'>
