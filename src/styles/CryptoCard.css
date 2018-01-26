@@ -14,3 +14,12 @@
 .table-content{
     text-align: left;
 }
+.unit-lg {
+    font-size: 1.5rem;
+    line-height: .5;
+ }
+ 
+ .price-lg {
+    font-size: 2.2rem;
+    line-height: .5;
+ }

@@ -21,7 +21,7 @@ export class CryptoCard extends Component {
                     avatar={coinLogoUrl(this.props.info.symbol)}
                     showExpandableButton={true}
                 >
-                    <h4>{'$' + Humanize.formatNumber(this.props.info.price_usd, 2)}</h4>
+                    <h4 className="unit-lg"><span className="price-lg">{'$' + Humanize.formatNumber(this.props.info.price_usd, 2)}</span> USD</h4>
                     <h6>{Humanize.formatNumber(this.props.info.price_btc, 8) + ' BTC'}</h6>
                     <table style={{ width: '100%' }}>
                         <tbody>
