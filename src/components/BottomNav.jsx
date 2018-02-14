@@ -11,6 +11,11 @@ const BottomNav = withRouter(({ history, location }) =>
             onClick={() => { history.push('/') }}
         />
         <BottomNavigationItem
+            label="Favorites"
+            icon={<FontIcon className="fa fa-heart" />}
+            onClick={() => { history.push('/favorites') }}
+        />
+        <BottomNavigationItem
             label="News"
             icon={<FontIcon className="fa fa-newspaper-o" />}
             onClick={() => { history.push('/news') }}
