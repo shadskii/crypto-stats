@@ -16,18 +16,29 @@ const style = {
 class FavoritesPage extends Component {
     state = {
         open: false,
-        coins: ['bitcoin']
+        coins: ['bitcoin'],
+        textValue: ''
     };
     handleOpen = () => {
         this.setState({ open: true });
     };
     handleClose = () => {
-        this.setState({ open: false });
+        var updated = this.state.coins.concat(this.state.textValue);
+        this.setState({
+            open: false,
+            coins: updated
+        });
+    };
+    handleTextFieldChange = (e) => {
+        this.setState({
+            textValue: e.target.value
+        });
     };
     render() {
         const actions = [
             <TextField
                 hintText="Coin Name"
+                onChange={this.handleTextFieldChange}
             />,
             <FlatButton
                 label="Cancel"
