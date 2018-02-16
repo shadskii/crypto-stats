@@ -5,7 +5,9 @@ import Paper from 'material-ui/Paper';
 
 import PricePage from './PricePage';
 import NewsPage from './NewsPage';
+import FavoritesPage from './FavoritesPage';
 import BottomNav from './BottomNav';
+
 import '../styles/App.css';
 
 class App extends Component {
@@ -21,6 +23,7 @@ class App extends Component {
         <Switch>
           <Route exact path='/' component={PricePage} />
           <Route path='/news' component={NewsPage} />
+          <Route path='/favorites' component={FavoritesPage} />
         </Switch>
 
         <footer className="foot">
