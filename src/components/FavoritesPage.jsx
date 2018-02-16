@@ -11,7 +11,7 @@ class FavoritesPage extends Component {
 
     render() {
         return <div >
-            <FloatingActionButton secondary={true} style={style}>
+            <FloatingActionButton style={style}>
                 <ContentAdd />
             </FloatingActionButton>
         </div>
