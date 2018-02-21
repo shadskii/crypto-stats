@@ -15,13 +15,19 @@ class Favorite extends Component {
     load() {
         var _this = this;
         fetch(API + this.props.coinId + '/')
-            .then(result => result.json())
+            .then(result => {
+                if (result.ok) {
+                    return result.json();
+                }
+                throw new Error("Not a valid coin");
+            })
             .then(items => {
+                console.log(items);
                 _this.setState({
                     coin: items,
                     fetchingData: false
                 });
-            })
+            }).catch(error => console.log(error));
     }
 
     componentDidMount() {
@@ -33,7 +39,6 @@ class Favorite extends Component {
             <div className='row'>
                 {this.state.fetchingData ?
                     (<div className='center-content'>
-                        <CircularProgress size={80} thickness={7} />
                     </div>)
                     :
                     (this.state.coin.map(function (el, index) {
