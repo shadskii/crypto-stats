@@ -24,7 +24,7 @@ class Favorite extends Component {
             .then(items => {
                 console.log(items);
                 _this.setState({
-                    coin: items,
+                    coin: items.slice(0, 1),
                     fetchingData: false
                 });
             }).catch(error => console.log(error));
@@ -41,7 +41,7 @@ class Favorite extends Component {
                     (<div className='center-content'>
                     </div>)
                     :
-                    (this.state.coin.slice(0, 1).map(function (el, index) {
+                    (this.state.coin.map(function (el, index) {
                         return <div key={index} className='col-md-6'>
                             <CryptoCard info={el} />
                         </div>
