@@ -20,14 +20,23 @@ class FavoritesPage extends Component {
         textValue: ''
     };
     handleOpen = () => {
-        this.setState({ open: true });
+        this.setState({
+            open: true,
+            textValue: ''
+        });
     };
     handleClose = () => {
-        var updated = this.state.coins.concat(this.state.textValue);
-        this.setState({
-            open: false,
-            coins: updated
-        });
+        if (this.state.textValue !== '') {
+            var updated = this.state.coins.concat([this.state.textValue]);
+            this.setState({
+                open: false,
+                coins: updated
+            });
+        } else {
+            this.setState({
+                open: false
+            });
+        }
     };
     handleTextFieldChange = (e) => {
         this.setState({
@@ -59,7 +68,7 @@ class FavoritesPage extends Component {
                             <CircularProgress size={80} thickness={7} />
                         </div>)
                         :
-                        (this.state.coins.map(function (el, index) {    
+                        (this.state.coins.map(function (el, index) {
                             return <div key={index} className='col-md-6'>
                                 <Favorite coinId={el} />
                             </div>
