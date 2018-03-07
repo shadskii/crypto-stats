@@ -16,7 +16,7 @@ const style = {
 class FavoritesPage extends Component {
     state = {
         open: false,
-        coins: ['bitcoin'],
+        coins: [],
         textValue: ''
     };
     handleOpen = () => {
@@ -32,6 +32,7 @@ class FavoritesPage extends Component {
                 open: false,
                 coins: updated
             });
+            localStorage.setItem("favoriteCoins", JSON.stringify(this.state.coins));
         } else {
             this.setState({
                 open: false
