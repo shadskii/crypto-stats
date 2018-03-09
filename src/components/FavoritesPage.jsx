@@ -26,6 +26,11 @@ class FavoritesPage extends Component {
         });
     };
     handleClose = () => {
+        this.setState({
+            open: false
+        });
+    };
+    handleSubmit = () => {
         if (this.state.textValue !== '') {
             var updated = this.state.coins.concat([this.state.textValue]);
             this.setState({
@@ -38,7 +43,7 @@ class FavoritesPage extends Component {
                 open: false
             });
         }
-    };
+    }
     handleTextFieldChange = (e) => {
         this.setState({
             textValue: e.target.value
@@ -58,7 +63,7 @@ class FavoritesPage extends Component {
             <FlatButton
                 label="Add"
                 primary={true}
-                onClick={this.handleClose}
+                onClick={this.handleSubmit}
             />,
         ];
         return <div >
