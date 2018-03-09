@@ -37,7 +37,6 @@ class FavoritesPage extends Component {
                 open: false,
                 coins: updated
             });
-            localStorage.setItem("favoriteCoins", JSON.stringify(this.state.coins));
         } else {
             this.setState({
                 open: false
@@ -89,7 +88,7 @@ class FavoritesPage extends Component {
                 open={this.state.open}
             >
                 Add any coin that you want to track!
-        </Dialog>
+            </Dialog>
             <FloatingActionButton style={style} onClick={this.handleOpen}>
                 <ContentAdd />
             </FloatingActionButton>
