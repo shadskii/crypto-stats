@@ -8,8 +8,10 @@ import { HashRouter as Router } from 'react-router-dom'
 import rootReducer from './reducers';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux'
+import storeSynchronize from 'redux-localstore'
 
 const store = createStore(rootReducer);
+storeSynchronize(store);
 
 ReactDOM.render(
     <Provider store={store}>

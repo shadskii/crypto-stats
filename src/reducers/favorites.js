@@ -1,11 +1,10 @@
 import * as types from '../constants/ActionTypes'
+import { defineState } from 'redux-localstore'
 
-const initialState = [
-    { id: 'bitcoin' }
-]
+const defaultState = []
+const initialState = defineState(defaultState)('favorites')
 
 export default function favorites(state = initialState, action) {
-    console.log(action);
     switch (action.type) {
         case types.ADD_FAVORITE:
             return [
