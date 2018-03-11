@@ -22,7 +22,6 @@ class Favorite extends Component {
                 throw new Error("Not a valid coin");
             })
             .then(items => {
-                console.log(items);
                 _this.setState({
                     coin: items.slice(0, 1),
                     fetchingData: false
@@ -35,10 +34,10 @@ class Favorite extends Component {
     }
     render() {
         return (
-
             <div className='row'>
                 {this.state.fetchingData ?
                     (<div className='center-content'>
+                        <CircularProgress size={80} thickness={7} />
                     </div>)
                     :
                     (this.state.coin.map(function (el, index) {
