@@ -2,8 +2,6 @@ import * as types from '../constants/ActionTypes'
 
 const initialState = [
     { id: 'bitcoin' }
-
-
 ]
 
 export default function favorites(state = initialState, action) {
@@ -13,7 +11,6 @@ export default function favorites(state = initialState, action) {
             return [
                 ...state,
                 { id: action.coinId }
-
             ]
 
         default:
