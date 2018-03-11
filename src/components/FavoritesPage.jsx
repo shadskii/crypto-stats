@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
-import AddFavoriteDialog from './AddFavoriteDialog';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
 import Favorite from './Favorite';
-import CircularProgress from 'material-ui/CircularProgress';
+
 const style = {
     position: 'fixed',
     bottom: 80,
@@ -18,15 +17,11 @@ class FavoritesPage extends Component {
         open: false,
         textValue: ''
     };
-    handleOpen = () => {
+
+    setOpen = (isOpen) => {
         this.setState({
-            open: true,
+            open: isOpen,
             textValue: ''
-        });
-    };
-    handleClose = () => {
-        this.setState({
-            open: false
         });
     };
     handleSubmit = () => {
@@ -51,7 +46,7 @@ class FavoritesPage extends Component {
             <FlatButton
                 label="Cancel"
                 primary={true}
-                onClick={this.handleClose}
+                onClick={() => this.setOpen(false)}
             />,
             <FlatButton
                 label="Add"
@@ -76,7 +71,7 @@ class FavoritesPage extends Component {
             >
                 Add any coin that you want to track!
             </Dialog>
-            <FloatingActionButton style={style} onClick={this.handleOpen}>
+            <FloatingActionButton style={style} onClick={() => this.setOpen(true)}>
                 <ContentAdd />
             </FloatingActionButton>
         </div >
