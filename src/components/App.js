@@ -40,6 +40,7 @@ function getPage(view, favoriteCoins, actions) {
   } else if (view.view === viewsConst.FAVORITE_PAGE) {
     return <FavoritesPage
       addFavorite={actions.addFavorite}
+      removeFavorite={actions.removeFavorite}
       favorites={favoriteCoins} />
   }
 }

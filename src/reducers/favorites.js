@@ -12,6 +12,8 @@ export default function favorites(state = initialState, action) {
                 { id: action.coinId }
             ]
 
+        case types.REMOVE_FAVORITE:
+            return state.filter(fav => fav.id !== action.coinId)
         default:
             return state;
     }

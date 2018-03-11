@@ -26,7 +26,10 @@ class Favorite extends Component {
                     coin: items.slice(0, 1),
                     fetchingData: false
                 });
-            }).catch(error => console.log(error));
+            }).catch(error => {
+                this.props.removeFavorite();
+                console.log(error);
+            });
     }
 
     componentDidMount() {
@@ -37,6 +40,7 @@ class Favorite extends Component {
             <div className='row'>
                 {this.state.fetchingData ?
                     (<div className='center-content'>
+                        <CircularProgress size={80} thickness={7} />
                     </div>)
                     :
                     (this.state.coin.map(function (el, index) {

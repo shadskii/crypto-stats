@@ -59,7 +59,7 @@ class FavoritesPage extends Component {
                 <div className='row'>
                     {this.props.favorites.map((coin, index) =>
                         <div key={index} className='col-md-6'>
-                            <Favorite coinId={coin.id} />
+                            <Favorite coinId={coin.id} removeFavorite={() => this.props.removeFavorite(coin.id)} />
                         </div>)}
                 </div>
             </div>
