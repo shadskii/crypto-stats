@@ -16,7 +16,6 @@ const style = {
 class FavoritesPage extends Component {
     state = {
         open: false,
-        coins: [],
         textValue: ''
     };
     handleOpen = () => {
@@ -32,16 +31,11 @@ class FavoritesPage extends Component {
     };
     handleSubmit = () => {
         if (this.state.textValue !== '') {
-            var updated = this.state.coins.concat([this.state.textValue]);
-            this.setState({
-                open: false,
-                coins: updated
-            });
-        } else {
-            this.setState({
-                open: false
-            });
+            this.props.addFavorite(this.state.textValue);
         }
+        this.setState({
+            open: false,
+        });
     }
     handleTextFieldChange = (e) => {
         this.setState({
@@ -68,17 +62,10 @@ class FavoritesPage extends Component {
         return <div >
             <div className='container-fluid content-scroll'>
                 <div className='row'>
-                    {this.state.fetchingData ?
-                        (<div className='center-content'>
-                            <CircularProgress size={80} thickness={7} />
-                        </div>)
-                        :
-                        (this.state.coins.map(function (el, index) {
-                            return <div key={index} className='col-md-6'>
-                                <Favorite coinId={el} />
-                            </div>
-                        }))
-                    }
+                    {this.props.favorites.map((coin, index) =>
+                        <div key={index} className='col-md-6'>
+                            <Favorite coinId={coin.id} />
+                        </div>)}
                 </div>
             </div>
             <Dialog
@@ -92,7 +79,7 @@ class FavoritesPage extends Component {
             <FloatingActionButton style={style} onClick={this.handleOpen}>
                 <ContentAdd />
             </FloatingActionButton>
-        </div>
+        </div >
     }
 };
 

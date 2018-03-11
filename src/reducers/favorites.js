@@ -1,19 +1,19 @@
 import * as types from '../constants/ActionTypes'
 
 const initialState = [
-    {
+    { id: 'bitcoin' }
 
-    }
+
 ]
 
 export default function favorites(state = initialState, action) {
-    switch (action.types) {
+    console.log(action);
+    switch (action.type) {
         case types.ADD_FAVORITE:
             return [
                 ...state,
-                {
-                    coinId: action.coinId
-                }
+                { id: action.coinId }
+
             ]
 
         default:
