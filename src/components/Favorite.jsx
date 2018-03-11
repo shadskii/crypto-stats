@@ -37,7 +37,6 @@ class Favorite extends Component {
             <div className='row'>
                 {this.state.fetchingData ?
                     (<div className='center-content'>
-                        <CircularProgress size={80} thickness={7} />
                     </div>)
                     :
                     (this.state.coin.map(function (el, index) {
