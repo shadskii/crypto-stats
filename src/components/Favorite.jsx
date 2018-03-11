@@ -44,7 +44,7 @@ class Favorite extends Component {
                     </div>)
                     :
                     (this.state.coin.map(function (el, index) {
-                        return <div key={index} className='col-md-6'>
+                        return <div key={index} className='col-lg-12'>
                             <CryptoCard info={el} />
                         </div>
                     }))
