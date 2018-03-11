@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react';
 import AppBar from 'material-ui/AppBar';
-import { Switch, Route } from 'react-router-dom'
 import Paper from 'material-ui/Paper';
 import PropTypes from 'prop-types'
 import PricePage from './PricePage';
@@ -11,46 +10,48 @@ import BottomNav from './BottomNav';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as Actions from '../actions';
+import * as viewsConst from '../constants/Views'
 import '../styles/App.css';
 
 
 
-const App = ({ favoriteCoins, actions }) => (
+const App = ({ favoriteCoins, actions, view }) => (
   <div className="wrapper">
     <AppBar
       title={'Crypto Stats'}
       showMenuIconButton={false}
       style={{ position: 'fixed' }}
     />
-
-    <Switch>
-      <Route exact path='/'>
-        <PricePage />
-      </Route>
-      <Route path='/news'>
-        <NewsPage />
-      </Route>
-      <Route path='/favorites'>
-        <FavoritesPage
-          addFavorite={actions.addFavorite}
-          favorites={favoriteCoins} />
-      </Route>
-    </Switch>
+    {getPage(view, favoriteCoins, actions)}
 
     <footer className="foot">
       <Paper zDepth={3} >
-        <BottomNav />
+        <BottomNav view={view} changeView={actions.changeView} />
       </Paper>
     </footer>
   </div>
 );
+
+function getPage(view, favoriteCoins, actions) {
+  if (view.view === viewsConst.PRICE_PAGE) {
+    return <PricePage />
+  } else if (view.view === viewsConst.NEWS_PAGE) {
+    return <NewsPage />
+  } else if (view.view === viewsConst.FAVORITE_PAGE) {
+    return <FavoritesPage
+      addFavorite={actions.addFavorite}
+      favorites={favoriteCoins} />
+  }
+}
+
 App.propTypes = {
   favoriteCoins: PropTypes.array.isRequired,
   actions: PropTypes.object.isRequired
 }
 
 const mapStateToProps = state => ({
-  favoriteCoins: state.favorites
+  favoriteCoins: state.favorites,
+  view: state.views
 })
 
 const mapDispatchToProps = dispatch => ({
