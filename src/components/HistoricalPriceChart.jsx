@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types'
 import { Line } from 'react-chartjs-2';
 import CircularProgress from 'material-ui/CircularProgress';
 import FlatButton from 'material-ui/FlatButton';
 import { historical24Hour } from '../dataSources';
 import '../styles/HistoricalPriceChart.css';
 
-export default class HistoricalPriceChart extends Component {
+class HistoricalPriceChart extends Component {
 
     constructor(props) {
         super(props);
@@ -88,4 +89,9 @@ export default class HistoricalPriceChart extends Component {
             </div>
         );
     }
+};
+HistoricalPriceChart.propTypes = {
+    symbol: PropTypes.string.isRequired
 }
+
+export default HistoricalPriceChart; 
