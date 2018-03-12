@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'
-import { CryptoCard } from './CryptoCard';
+import CryptoCard from './CryptoCard';
 import CircularProgress from 'material-ui/CircularProgress';
 
 const API = "https://api.coinmarketcap.com/v1/ticker/";

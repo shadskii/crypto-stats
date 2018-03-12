@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import CircularProgress from 'material-ui/CircularProgress';
 import FlatButton from 'material-ui/FlatButton';
-import { CryptoCard } from './CryptoCard';
+import CryptoCard from './CryptoCard';
 
 const API = "https://api.coinmarketcap.com/v1/ticker/?limit=";
 class PricePage extends Component {
