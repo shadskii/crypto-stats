@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types'
 import { Card, CardHeader, CardText } from 'material-ui/Card';
 import Humanize from 'humanize-plus';
 import HistoricalPriceChart from './HistoricalPriceChart';
@@ -84,3 +85,7 @@ function PriceLabel(props) {
         </td>
     );
 }
+CryptoCard.propTypes = {
+    info: PropTypes.object.isRequired
+}
+export default CryptoCard; 

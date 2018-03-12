@@ -1,36 +1,65 @@
-import React, { Component } from 'react';
+import React from 'react';
 import AppBar from 'material-ui/AppBar';
-import { Switch, Route } from 'react-router-dom'
 import Paper from 'material-ui/Paper';
-
+import PropTypes from 'prop-types'
 import PricePage from './PricePage';
 import NewsPage from './NewsPage';
+import FavoritesPage from './FavoritesPage';
 import BottomNav from './BottomNav';
+
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import * as Actions from '../actions';
+import * as viewsConst from '../constants/Views'
 import '../styles/App.css';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="wrapper">
-        <AppBar
-          title={'Crypto Stats'}
-          showMenuIconButton={false}
-          style={{ position: 'fixed' }}
-        />
 
-        <Switch>
-          <Route exact path='/' component={PricePage} />
-          <Route path='/news' component={NewsPage} />
-        </Switch>
+const App = ({ favoriteCoins, actions, view }) => (
+  <div className="wrapper">
+    <AppBar
+      title={'Crypto Stats'}
+      showMenuIconButton={false}
+      style={{ position: 'fixed' }}
+    />
+    {getPage(view, favoriteCoins, actions)}
 
-        <footer className="foot">
-          <Paper zDepth={3} >
-            <BottomNav />
-          </Paper>
-        </footer>
-      </div>
-    );
+    <footer className="foot">
+      <Paper zDepth={3} >
+        <BottomNav view={view} changeView={actions.changeView} />
+      </Paper>
+    </footer>
+  </div>
+);
+
+function getPage(view, favoriteCoins, actions) {
+  if (view.view === viewsConst.PRICE_PAGE) {
+    return <PricePage />
+  } else if (view.view === viewsConst.NEWS_PAGE) {
+    return <NewsPage />
+  } else if (view.view === viewsConst.FAVORITE_PAGE) {
+    return <FavoritesPage
+      addFavorite={actions.addFavorite}
+      removeFavorite={actions.removeFavorite}
+      favorites={favoriteCoins} />
   }
 }
 
-export default App;
+App.propTypes = {
+  favoriteCoins: PropTypes.array.isRequired,
+  actions: PropTypes.object.isRequired
+}
+
+const mapStateToProps = state => ({
+  favoriteCoins: state.favorites,
+  view: state.views
+})
+
+const mapDispatchToProps = dispatch => ({
+  actions: bindActionCreators(Actions, dispatch)
+})
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App)
+
