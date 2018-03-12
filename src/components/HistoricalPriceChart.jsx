@@ -76,7 +76,6 @@ export default class HistoricalPriceChart extends Component {
                 }
             ]
         };
-        console.log('redraw');
         return (
             <div className='float-container'>
                 <h5>{this.state.graphSelect === 0 ? '1 Hour Graph' : '24 Hour Graph'}</h5>
