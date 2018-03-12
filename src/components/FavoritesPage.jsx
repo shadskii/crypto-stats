@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types'
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import Dialog from 'material-ui/Dialog';
@@ -77,5 +78,11 @@ class FavoritesPage extends Component {
         </div >
     }
 };
+
+FavoritesPage.propTypes = {
+    addFavorite: PropTypes.func.isRequired,
+    removeFavorite: PropTypes.func.isRequired,
+    favorites: PropTypes.array.isRequired
+}
 
 export default FavoritesPage;
