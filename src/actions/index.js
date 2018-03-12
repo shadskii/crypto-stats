@@ -10,7 +10,6 @@ export const removeFavorite = coinId => ({
     coinId
 });
 
-
 export const changeView = view => ({
     type: types.CHANGE_VIEW,
     view: view
