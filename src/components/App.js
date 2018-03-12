@@ -14,7 +14,6 @@ import * as viewsConst from '../constants/Views'
 import '../styles/App.css';
 
 
-
 const App = ({ favoriteCoins, actions, view }) => (
   <div className="wrapper">
     <AppBar

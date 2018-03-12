@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types'
 import { CryptoCard } from './CryptoCard';
 import CircularProgress from 'material-ui/CircularProgress';
 
@@ -53,4 +54,10 @@ class Favorite extends Component {
         );
     }
 }
+
+Favorite.propTypes = {
+    coinId: PropTypes.string.isRequired,
+    removeFavorite: PropTypes.func.isRequired
+}
+
 export default Favorite;
