@@ -6,12 +6,14 @@ import PricePage from './PricePage';
 import NewsPage from './NewsPage';
 import FavoritesPage from './FavoritesPage';
 import BottomNav from './BottomNav';
+import IconButton from 'material-ui/IconButton';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as Actions from '../actions';
 import * as viewsConst from '../constants/Views'
 import '../styles/App.css';
+import { FontIcon } from 'material-ui';
 
 
 const App = ({ favoriteCoins, actions, view }) => (
@@ -20,6 +22,7 @@ const App = ({ favoriteCoins, actions, view }) => (
       title={'Crypto Stats'}
       showMenuIconButton={false}
       style={{ position: 'fixed' }}
+      iconElementRight={<IconButton>{view.view === viewsConst.FAVORITE_PAGE ? <FontIcon className="fa fa-cog" /> : null}</IconButton>}
     />
     {getPage(view, favoriteCoins, actions)}
 
