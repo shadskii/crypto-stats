@@ -24,7 +24,7 @@ const App = ({ favoriteCoins, actions, view }) => (
       style={{ position: 'fixed' }}
       iconElementRight={<IconButton>{view.view === viewsConst.FAVORITE_PAGE ? <FontIcon className="fa fa-cog" /> : null}</IconButton>}
     />
-    {getPage(view, favoriteCoins, actions)}
+    {getPage(view.view, favoriteCoins, actions)}
 
     <footer className="foot">
       <Paper zDepth={3} >
@@ -35,11 +35,11 @@ const App = ({ favoriteCoins, actions, view }) => (
 );
 
 function getPage(view, favoriteCoins, actions) {
-  if (view.view === viewsConst.PRICE_PAGE) {
+  if (view === viewsConst.PRICE_PAGE) {
     return <PricePage />
-  } else if (view.view === viewsConst.NEWS_PAGE) {
+  } else if (view === viewsConst.NEWS_PAGE) {
     return <NewsPage />
-  } else if (view.view === viewsConst.FAVORITE_PAGE) {
+  } else if (view === viewsConst.FAVORITE_PAGE) {
     return <FavoritesPage
       addFavorite={actions.addFavorite}
       removeFavorite={actions.removeFavorite}
