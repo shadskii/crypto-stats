@@ -22,7 +22,10 @@ const App = ({ favoriteCoins, actions, view }) => (
       title={'Crypto Stats'}
       showMenuIconButton={false}
       style={{ position: 'fixed' }}
-      iconElementRight={<IconButton>{view.view === viewsConst.FAVORITE_PAGE ? <FontIcon className="fa fa-cog" /> : null}</IconButton>}
+      iconElementRight={
+        <IconButton>{
+          view.view === viewsConst.FAVORITE_PAGE ? <FontIcon className="fa fa-cog" /> : null}
+        </IconButton>}
     />
     {getPage(view.view, favoriteCoins, actions)}
 
