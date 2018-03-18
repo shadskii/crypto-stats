@@ -28,7 +28,10 @@ const App = ({ favoriteCoins, actions, view }) => (
 
     <footer className="foot">
       <Paper zDepth={3} >
-        <BottomNav view={view} changeView={actions.changeView} />
+        <BottomNav
+          view={view}
+          changeView={actions.changeView}
+        />
       </Paper>
     </footer>
   </div>
