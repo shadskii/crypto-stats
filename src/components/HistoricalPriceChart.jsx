@@ -7,7 +7,6 @@ import { historical24Hour } from '../dataSources';
 import '../styles/HistoricalPriceChart.css';
 
 class HistoricalPriceChart extends Component {
-
     constructor(props) {
         super(props);
         this.state = {
