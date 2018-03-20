@@ -27,8 +27,7 @@ class PricePage extends Component {
                     coinStats: items,
                     fetchingData: false
                 });
-            })
-        console.log('Refreshing prices!')
+            });
     }
 
     fetchMore() {
@@ -41,7 +40,6 @@ class PricePage extends Component {
                     coinStats: updated
                 });
             });
-        console.log('Adding more prices');
     }
 
     componentDidMount() {
