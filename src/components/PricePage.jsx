@@ -61,7 +61,10 @@ class PricePage extends Component {
                             </div>
                         }))
                     }
-                    <FlatButton className='col-md-12' onClick={() => this.fetchMore()} label="Load More" />
+                    <FlatButton
+                        className='col-md-12'
+                        onClick={() => this.fetchMore()}
+                        label="Load More" />
                 </div>
             </div>
         );

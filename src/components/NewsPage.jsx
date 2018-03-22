@@ -51,7 +51,10 @@ class NewsPage extends Component {
         fetch(REDDIT_ENDPOINT)
             .then(result => result.json())
             .then(result => {
-                _this.setState({ posts: result.data.children, lastPostName: result.data.children[result.data.children.length - 1].data.name });
+                _this.setState({
+                    posts: result.data.children,
+                    lastPostName: result.data.children[result.data.children.length - 1].data.name
+                });
             });
         console.log('Fetching first news posts');
     }
@@ -62,7 +65,10 @@ class NewsPage extends Component {
             .then(result => result.json())
             .then(result => {
                 var arr = _this.state.posts.concat(result.data.children);
-                _this.setState({ posts: arr, lastPostName: result.data.children[result.data.children.length - 1].data.name });
+                _this.setState({
+                    posts: arr,
+                    lastPostName: result.data.children[result.data.children.length - 1].data.name
+                });
             });
     }
     componentWillMount() {
@@ -78,7 +84,10 @@ class NewsPage extends Component {
                             <RedditPost info={el.data} />
                         </div>
                     })}
-                    <FlatButton className='col-md-12' onClick={() => this.fetchNext(this.state.lastPostName)} label="Load More" />
+                    <FlatButton
+                        className='col-md-12'
+                        onClick={() => this.fetchNext(this.state.lastPostName)}
+                        label="Load More" />
                 </div>
             </div >
         );
