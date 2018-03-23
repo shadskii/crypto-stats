@@ -9,49 +9,50 @@ import '../styles/CryptoCard.css';
 export class CryptoCard extends Component {
 
     render() {
+        let coin = this.props.info;
         return (
             <Card
                 containerStyle={{ paddingBottom: 0 }}
                 className="pad-card"
             >
                 <CardHeader
-                    title={this.props.info.name + ' (' + this.props.info.symbol + ')'}
+                    title={coin.name + ' (' + coin.symbol + ')'}
                     titleStyle={{ fontSize: '1.3em' }}
-                    subtitle={this.props.info.rank + ': Market Cap: $' + Humanize.formatNumber(this.props.info.market_cap_usd, 2)}
+                    subtitle={coin.rank + ': Market Cap: $' + Humanize.formatNumber(coin.market_cap_usd, 2)}
                     subtitleStyle={{ fontSize: '.9em' }}
-                    avatar={coinLogoUrl(this.props.info.symbol)}
+                    avatar={coinLogoUrl(coin.symbol)}
                     showExpandableButton={true}
                 >
-                    <h4 className="unit-lg"><span className="price-lg">{'$' + Humanize.formatNumber(this.props.info.price_usd, 2)}</span> USD</h4>
-                    <h6>{Humanize.formatNumber(this.props.info.price_btc, 8) + ' BTC'}</h6>
+                    <h4 className="unit-lg"><span className="price-lg">{'$' + Humanize.formatNumber(coin.price_usd, 2)}</span> USD</h4>
+                    <h6>{Humanize.formatNumber(coin.price_btc, 8) + ' BTC'}</h6>
                     <table style={{ width: '100%' }}>
                         <tbody>
                             <tr className='table-header'>
                                 <PriceLabel
                                     desc={'1hr'}
-                                    change={this.props.info.percent_change_1h}
+                                    change={coin.percent_change_1h}
                                 />
                                 <PriceLabel
                                     desc={'24hr'}
-                                    change={this.props.info.percent_change_24h}
+                                    change={coin.percent_change_24h}
                                 />
                                 <PriceLabel
                                     desc={'7d'}
-                                    change={this.props.info.percent_change_7d}
+                                    change={coin.percent_change_7d}
                                 />
                             </tr>
                             <tr className='table-content'>
                                 <PriceChange
-                                    price={this.props.info.price_usd}
-                                    change={this.props.info.percent_change_1h}
+                                    price={coin.price_usd}
+                                    change={coin.percent_change_1h}
                                 />
                                 <PriceChange
-                                    price={this.props.info.price_usd}
-                                    change={this.props.info.percent_change_24h}
+                                    price={coin.price_usd}
+                                    change={coin.percent_change_24h}
                                 />
                                 <PriceChange
-                                    price={this.props.info.price_usd}
-                                    change={this.props.info.percent_change_7d}
+                                    price={coin.price_usd}
+                                    change={coin.percent_change_7d}
                                 />
                             </tr>
                         </tbody>
@@ -60,7 +61,7 @@ export class CryptoCard extends Component {
                 <CardText
                     expandable={true}
                 >
-                    <HistoricalPriceChart symbol={this.props.info.symbol} />
+                    <HistoricalPriceChart symbol={coin.symbol} />
                 </CardText>
             </Card >
         );
