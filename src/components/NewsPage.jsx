@@ -9,8 +9,9 @@ import link_icon from '../link_icon.png';
 const REDDIT_ENDPOINT = 'https://www.reddit.com/r/CryptoCurrency.json';
 
 function RedditPost(props) {
-    let shouldExpand = props.info.is_self === true;
-    let thumb = props.info.thumbnail;
+    let post = props.info;
+    let shouldExpand = post.is_self === true;
+    let thumb = post.thumbnail;
     if (thumb === 'self') {
         thumb = reddit_icon;
     } else if (thumb === 'default') {
@@ -19,19 +20,19 @@ function RedditPost(props) {
     return (
         <Card className="pad-card">
             <CardHeader
-                title={props.info.title}
-                subtitle={props.info.author}
+                title={post.title}
+                subtitle={post.author}
                 actAsExpander={shouldExpand}
                 showExpandableButton={shouldExpand}
                 avatar={thumb}
             />
 
             < CardText expandable={shouldExpand}>
-                {props.info.selftext}
+                {post.selftext}
             </CardText>
             <CardActions>
                 <FlatButton label="View Post" onClick={() => {
-                    window.open(props.info.url);
+                    window.open(post.url);
                 }} />
 
             </CardActions>
