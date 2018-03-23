@@ -60,7 +60,10 @@ class FavoritesPage extends Component {
                 <div className='row'>
                     {this.props.favorites.map((coin, index) =>
                         <div key={index} className='col-md-6'>
-                            <Favorite coinId={coin.id} removeFavorite={() => this.props.removeFavorite(coin.id)} />
+                            <Favorite
+                                coinId={coin.id}
+                                removeFavorite={() => this.props.removeFavorite(coin.id)}
+                            />
                         </div>)}
                 </div>
             </div>
@@ -72,7 +75,9 @@ class FavoritesPage extends Component {
             >
                 Add any coin that you want to track!
             </Dialog>
-            <FloatingActionButton style={style} onClick={() => this.setOpen(true)}>
+            <FloatingActionButton
+                style={style}
+                onClick={() => this.setOpen(true)}>
                 <ContentAdd />
             </FloatingActionButton>
         </div >
