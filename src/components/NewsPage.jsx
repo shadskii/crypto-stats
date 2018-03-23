@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Card, CardActions, CardHeader, CardText } from 'material-ui/Card';
+import PropTypes from 'prop-types';
 import FlatButton from 'material-ui/FlatButton';
 import reddit_icon from '../reddit_icon.png';
 import link_icon from '../link_icon.png';
@@ -38,7 +39,9 @@ function RedditPost(props) {
     );
 }
 class NewsPage extends Component {
-
+    static defaultProps = {
+        feedSize: 25
+    }
     constructor(props) {
         super(props);
         this.state = {
@@ -49,7 +52,7 @@ class NewsPage extends Component {
 
     fetch() {
         var _this = this;
-        fetch(REDDIT_ENDPOINT + '?count=' + 25 + '&after=' + this.state.lastPostName)
+        fetch(REDDIT_ENDPOINT + '?count=' + this.props.feedSize + '&after=' + this.state.lastPostName)
             .then(result => result.json())
             .then(result => {
                 var arr = _this.state.posts.concat(result.data.children);
@@ -59,7 +62,6 @@ class NewsPage extends Component {
                 });
             });
     }
-
 
     componentWillMount() {
         this.fetch();
@@ -83,5 +85,7 @@ class NewsPage extends Component {
         );
     }
 }
-
+NewsPage.propTypes = {
+    feedSize: PropTypes.number
+}
 export default NewsPage;
