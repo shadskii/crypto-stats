@@ -26,9 +26,7 @@ class FavoritesPage extends Component {
         });
     };
     handleSubmit = () => {
-        if (this.state.textValue !== '') {
-            this.props.addFavorite(this.state.textValue);
-        }
+        this.props.addFavorite(this.state.textValue);
         this.setState({
             open: false,
         });
