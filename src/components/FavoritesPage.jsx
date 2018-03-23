@@ -52,6 +52,7 @@ class FavoritesPage extends Component {
             <FlatButton
                 label="Add"
                 primary={true}
+                disabled={this.state.textValue === ''}
                 onClick={this.handleSubmit}
             />,
         ];
