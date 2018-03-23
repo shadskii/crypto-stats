@@ -14,43 +14,35 @@ class PricePage extends Component {
         super(props);
         this.state = {
             coinStats: [],
-            fetchingData: true
+            fetchingData: true,
+            numCoins: 0
         };
     }
-    refresh() {
+
+    fetch() {
         this.setState({ fetchingData: true })
         var _this = this;
-        fetch(API + this.props.feedSize)
+        fetch(API + this.props.feedSize + '&start=' + this.state.numCoins)
             .then(result => result.json())
             .then(items => {
+                var updated = this.state.coinStats.concat(items);
                 _this.setState({
-                    coinStats: items,
+                    coinStats: updated,
+                    numCoins: updated.length,
                     fetchingData: false
                 });
             });
     }
 
-    fetchMore() {
-        var _this = this;
-        fetch(API + this.props.feedSize + '&start=' + this.state.coinStats.length)
-            .then(result => result.json())
-            .then(items => {
-                var updated = this.state.coinStats.concat(items);
-                _this.setState({
-                    coinStats: updated
-                });
-            });
-    }
-
     componentDidMount() {
-        this.refresh(this.props.feedSize);
+        this.fetch();
     }
 
     render() {
         return (
             <div className='container-fluid content-scroll'>
                 <div className='row'>
-                    {this.state.fetchingData ?
+                    {(this.state.fetchingData && this.state.numCoins === 0) ?
                         (<div className='center-content'>
                             <CircularProgress size={80} thickness={7} />
                         </div>)
@@ -63,7 +55,7 @@ class PricePage extends Component {
                     }
                     <FlatButton
                         className='col-md-12'
-                        onClick={() => this.fetchMore()}
+                        onClick={() => this.fetch()}
                         label="Load More" />
                 </div>
             </div>
