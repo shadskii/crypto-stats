@@ -42,26 +42,14 @@ class NewsPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            posts: []
+            posts: [],
+            lastPostName: ''
         };
     }
 
-    fetchFirst() {
+    fetch() {
         var _this = this;
-        fetch(REDDIT_ENDPOINT)
-            .then(result => result.json())
-            .then(result => {
-                _this.setState({
-                    posts: result.data.children,
-                    lastPostName: result.data.children[result.data.children.length - 1].data.name
-                });
-            });
-        console.log('Fetching first news posts');
-    }
-
-    fetchNext(lastPostName) {
-        var _this = this;
-        fetch(REDDIT_ENDPOINT + '?count=' + 25 + '&after=' + lastPostName)
+        fetch(REDDIT_ENDPOINT + '?count=' + 25 + '&after=' + this.state.lastPostName)
             .then(result => result.json())
             .then(result => {
                 var arr = _this.state.posts.concat(result.data.children);
@@ -71,8 +59,10 @@ class NewsPage extends Component {
                 });
             });
     }
+
+
     componentWillMount() {
-        this.fetchFirst();
+        this.fetch();
     }
 
     render() {
@@ -86,7 +76,7 @@ class NewsPage extends Component {
                     })}
                     <FlatButton
                         className='col-md-12'
-                        onClick={() => this.fetchNext(this.state.lastPostName)}
+                        onClick={() => this.fetch()}
                         label="Load More" />
                 </div>
             </div >
