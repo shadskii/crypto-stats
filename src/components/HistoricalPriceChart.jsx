@@ -24,6 +24,7 @@ class HistoricalPriceChart extends Component {
             ],
         }
     }
+
     refresh() {
         var _this = this;
         historical24Hour(this.props.symbol).then(update => {
@@ -42,11 +43,14 @@ class HistoricalPriceChart extends Component {
             });
         });
     }
+
     componentDidMount() {
         this.refresh();
     }
 
-    select = (index) => this.setState({ graphSelect: index });
+    select = (index) => this.setState({
+        graphSelect: index
+    });
 
     render() {
         var data = {
