@@ -7,6 +7,7 @@ import NewsPage from './NewsPage';
 import FavoritesPage from './FavoritesPage';
 import BottomNav from './BottomNav';
 import IconButton from 'material-ui/IconButton';
+import AddFavoriteDialog from './AddFavoriteDialog';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -29,6 +30,11 @@ const App = ({ favoriteCoins, actions, view }) => (
     />
     {getPage(view.view, favoriteCoins, actions)}
 
+    <AddFavoriteDialog
+      dialog={view.dialog}
+      addFavorite={actions.addFavorite}
+      openDialog={actions.openDialog}
+    />
     <footer className="foot">
       <Paper zDepth={3} >
         <BottomNav
@@ -47,7 +53,7 @@ function getPage(view, favoriteCoins, actions) {
     return <NewsPage />
   } else if (view === viewsConst.FAVORITE_PAGE) {
     return <FavoritesPage
-      addFavorite={actions.addFavorite}
+      openDialog={actions.openDialog}
       removeFavorite={actions.removeFavorite}
       favorites={favoriteCoins} />
   }

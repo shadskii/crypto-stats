@@ -13,4 +13,9 @@ export const removeFavorite = coinId => ({
 export const changeView = view => ({
     type: types.CHANGE_VIEW,
     view: view
-})
+});
+
+export const openDialog = dialog => ({
+    type: types.OPEN_DIALOG,
+    dialog: dialog
+});

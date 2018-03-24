@@ -2,10 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types'
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
-import Dialog from 'material-ui/Dialog';
-import FlatButton from 'material-ui/FlatButton';
-import TextField from 'material-ui/TextField';
 import Favorite from './Favorite';
+import * as dialogConsts from '../constants/Dialogs';
 
 const style = {
     position: 'fixed',
@@ -14,46 +12,7 @@ const style = {
 };
 
 class FavoritesPage extends Component {
-    state = {
-        open: false,
-        textValue: ''
-    };
-
-    setOpen = (isOpen) => {
-        this.setState({
-            open: isOpen,
-            textValue: ''
-        });
-    };
-    handleSubmit = () => {
-        this.props.addFavorite(this.state.textValue);
-        this.setState({
-            open: false,
-        });
-    }
-    handleTextFieldChange = (e) => {
-        this.setState({
-            textValue: e.target.value
-        });
-    };
     render() {
-        const actions = [
-            <TextField
-                hintText="Coin Name"
-                onChange={this.handleTextFieldChange}
-            />,
-            <FlatButton
-                label="Cancel"
-                primary={true}
-                onClick={() => this.setOpen(false)}
-            />,
-            <FlatButton
-                label="Add"
-                primary={true}
-                disabled={this.state.textValue === ''}
-                onClick={this.handleSubmit}
-            />,
-        ];
         return <div >
             <div className='container-fluid content-scroll'>
                 <div className='row'>
@@ -66,17 +25,9 @@ class FavoritesPage extends Component {
                         </div>)}
                 </div>
             </div>
-            <Dialog
-                title="Add Favorite"
-                actions={actions}
-                modal={true}
-                open={this.state.open}
-            >
-                Add any coin that you want to track!
-            </Dialog>
             <FloatingActionButton
                 style={style}
-                onClick={() => this.setOpen(true)}>
+                onClick={() => this.props.openDialog(dialogConsts.ADD_FAVORITE_DIALOG)}>
                 <ContentAdd />
             </FloatingActionButton>
         </div >
@@ -84,7 +35,7 @@ class FavoritesPage extends Component {
 };
 
 FavoritesPage.propTypes = {
-    addFavorite: PropTypes.func.isRequired,
+    openDialog: PropTypes.func.isRequired,
     removeFavorite: PropTypes.func.isRequired,
     favorites: PropTypes.array.isRequired
 }
