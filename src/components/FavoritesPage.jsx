@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types'
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
@@ -11,28 +11,26 @@ const style = {
     right: 25,
 };
 
-class FavoritesPage extends Component {
-    render() {
-        return <div >
-            <div className='container-fluid content-scroll'>
-                <div className='row'>
-                    {this.props.favorites.map((coin, index) =>
-                        <div key={index} className='col-md-6'>
-                            <Favorite
-                                coinId={coin.id}
-                                removeFavorite={() => this.props.removeFavorite(coin.id)}
-                            />
-                        </div>)}
-                </div>
+const FavoritesPage = ({ openDialog, removeFavorite, favorites }) => (
+    <div >
+        <div className='container-fluid content-scroll'>
+            <div className='row'>
+                {favorites.map((coin, index) =>
+                    <div key={index} className='col-md-6'>
+                        <Favorite
+                            coinId={coin.id}
+                            removeFavorite={() => removeFavorite(coin.id)}
+                        />
+                    </div>)}
             </div>
-            <FloatingActionButton
-                style={style}
-                onClick={() => this.props.openDialog(dialogConsts.ADD_FAVORITE_DIALOG)}>
-                <ContentAdd />
-            </FloatingActionButton>
-        </div >
-    }
-};
+        </div>
+        <FloatingActionButton
+            style={style}
+            onClick={() => openDialog(dialogConsts.ADD_FAVORITE_DIALOG)}>
+            <ContentAdd />
+        </FloatingActionButton>
+    </div >
+);
 
 FavoritesPage.propTypes = {
     openDialog: PropTypes.func.isRequired,
