@@ -61,7 +61,8 @@ function getPage(view, favoriteCoins, actions) {
 
 App.propTypes = {
   favoriteCoins: PropTypes.array.isRequired,
-  actions: PropTypes.object.isRequired
+  actions: PropTypes.object.isRequired,
+  view: PropTypes.object.isRequired
 }
 
 const mapStateToProps = state => ({
