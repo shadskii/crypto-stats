@@ -38,14 +38,16 @@ class AddFavoriteDialog extends Component {
                 onClick={this.handleSubmit}
             />,
         ];
-        return (<Dialog
-            title="Add Favorite"
-            actions={actions}
-            modal={true}
-            open={this.props.dialog === dialogConsts.ADD_FAVORITE_DIALOG}
-        >
-            Add any coin that you want to track!
-    </Dialog>)
+        return (
+            <Dialog
+                title="Add Favorite"
+                actions={actions}
+                modal={true}
+                open={this.props.dialog === dialogConsts.ADD_FAVORITE_DIALOG}
+            >
+                Add any coin that you want to track!
+             </Dialog>
+        )
     }
 }
 

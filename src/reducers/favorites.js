@@ -16,7 +16,12 @@ export default function favorites(state = initialState, action) {
             return state;
 
         case types.REMOVE_FAVORITE:
-            return state.filter(fav => fav.id !== action.coinId)
+            console.log(state);
+            // let index = state.map(fav => fav.id).indexOf(action.coinId);
+            // if (index >= 0) {
+            //     return state.splice(index, 1);
+            // }
+            return state.filter((coin, i) => coin.id !== action.coinId);
         default:
             return state;
     }

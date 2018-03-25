@@ -8,6 +8,8 @@ import FavoritesPage from './FavoritesPage';
 import BottomNav from './BottomNav';
 import IconButton from 'material-ui/IconButton';
 import AddFavoriteDialog from './AddFavoriteDialog';
+import EditFavoriteDialog from './EditFavoritesDialog';
+import * as dialogConsts from '../constants/Dialogs';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -24,8 +26,10 @@ const App = ({ favoriteCoins, actions, view }) => (
       showMenuIconButton={false}
       style={{ position: 'fixed' }}
       iconElementRight={
-        <IconButton>{
-          view.view === viewsConst.FAVORITE_PAGE ? <FontIcon className="fa fa-cog" /> : null}
+        <IconButton
+          onClick={() => actions.openDialog(dialogConsts.REMOVE_FAVORITE_DIALOG)}
+        >{
+            view.view === viewsConst.FAVORITE_PAGE ? <FontIcon className="fa fa-cog" /> : null}
         </IconButton>}
     />
     {getPage(view.view, favoriteCoins, actions)}
@@ -35,6 +39,14 @@ const App = ({ favoriteCoins, actions, view }) => (
       addFavorite={actions.addFavorite}
       openDialog={actions.openDialog}
     />
+
+    <EditFavoriteDialog
+      dialog={view.dialog}
+      removeFavorite={actions.removeFavorite}
+      openDialog={actions.openDialog}
+      favorites={favoriteCoins}
+    />
+
     <footer className="foot">
       <Paper zDepth={3} >
         <BottomNav
