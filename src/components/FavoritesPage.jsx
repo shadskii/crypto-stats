@@ -15,15 +15,14 @@ const FavoritesPage = ({ openDialog, removeFavorite, favorites }) => (
     <div >
         <div className='container-fluid content-scroll'>
             <div className='row'>
-                {favorites.map((coin, index) => {
-                    console.log(coin.id);
-                    return <div key={index} className='col-md-6'>
+                {favorites.map((coin, index) =>
+                    <div key={index} className='col-md-6'>
                         <Favorite
                             coinId={coin.id}
                             removeFavorite={() => removeFavorite(coin.id)}
                         />
                     </div>
-                })}
+                )}
             </div>
         </div>
         <FloatingActionButton
