@@ -18,8 +18,9 @@ class EditFavoritesDialog extends Component {
     }
 
     handleSubmit = () => {
-        this.props.removeFavorite(this.state.selected[0]);
+        this.props.removeFavorite(this.state.selected);
         this.props.openDialog(dialogConsts.NO_DIALOG);
+        this.setState({ selected: [] });
     }
     render() {
         const actions = [

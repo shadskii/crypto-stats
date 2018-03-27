@@ -5,9 +5,9 @@ export const addFavorite = coinId => ({
     coinId
 });
 
-export const removeFavorite = coinId => ({
+export const removeFavorite = (coinIds) => ({
     type: types.REMOVE_FAVORITE,
-    coinId
+    coinIds
 });
 
 export const changeView = view => ({
