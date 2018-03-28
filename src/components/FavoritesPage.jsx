@@ -16,7 +16,7 @@ const FavoritesPage = ({ openDialog, removeFavorite, favorites }) => (
         <div className='container-fluid content-scroll'>
             <div className='row'>
                 {favorites.map((coin, index) =>
-                    <div key={index} className='col-md-6'>
+                    <div key={coin.id} className='col-md-6'>
                         <Favorite
                             coinId={coin.id}
                             removeFavorite={() => removeFavorite(coin.id)}
