@@ -5,9 +5,9 @@ export const addFavorite = coinId => ({
     coinId
 });
 
-export const removeFavorite = (coinIds) => ({
+export const removeFavorite = coinId => ({
     type: types.REMOVE_FAVORITE,
-    coinIds
+    coinId
 });
 
 export const changeView = view => ({
@@ -18,4 +18,4 @@ export const changeView = view => ({
 export const openDialog = dialog => ({
     type: types.OPEN_DIALOG,
     dialog: dialog
-});
+}); 
