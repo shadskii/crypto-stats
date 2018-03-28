@@ -16,7 +16,7 @@ export default function favorites(state = initialState, action) {
             return state;
 
         case types.REMOVE_FAVORITE:
-            return state.filter((coin, i) => coin.id.toUpperCase() !== action.coinId.toUpperCase());
+            return state.filter(i => i.id.toUpperCase() !== action.coinId.toUpperCase());
         default:
             return state;
     }

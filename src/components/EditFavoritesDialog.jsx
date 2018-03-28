@@ -18,16 +18,24 @@ class EditFavoritesDialog extends Component {
     }
 
     handleSubmit = () => {
-        this.props.removeFavorite(this.state.selected);
+        for (let i = 0; i < this.state.selected.length; i++) {
+            this.props.removeFavorite(this.state.selected[i]);
+        }
         this.props.openDialog(dialogConsts.NO_DIALOG);
         this.setState({ selected: [] });
     }
+
+    handleClose = () => {
+        this.setState({ selected: [] });
+        this.props.openDialog(dialogConsts.NO_DIALOG);
+    }
+
     render() {
         const actions = [
             <FlatButton
                 label="Cancel"
                 primary={true}
-                onClick={() => this.props.openDialog(dialogConsts.NO_DIALOG)}
+                onClick={() => this.handleClose()}
             />,
             < FlatButton
                 label="Remove"
