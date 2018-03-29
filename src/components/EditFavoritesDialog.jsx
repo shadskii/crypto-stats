@@ -13,10 +13,9 @@ class EditFavoritesDialog extends Component {
     select = (coin) => {
         let updated = this.state.selected.map(c => {
             if (coin === c.id) {
-                let bool = !c.select;
                 return {
                     id: c.id,
-                    select: bool
+                    select: !c.select
                 }
             }
             return c;
