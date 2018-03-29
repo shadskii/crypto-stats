@@ -34,10 +34,8 @@ class EditFavoritesDialog extends Component {
         });
     }
     handleSubmit = () => {
-        console.log(this.state.selected);
         for (let i = 0; i < this.state.selected.length; i++) {
             if (this.state.selected[i].select) {
-                console.log(this.state.selected[i].id)
                 this.props.removeFavorite(this.state.selected[i].id);
             }
         }
