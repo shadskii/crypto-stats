@@ -11,15 +11,35 @@ class EditFavoritesDialog extends Component {
     }
 
     select = (coin) => {
-        let updated = this.state.selected.concat(coin);
+        let updated = this.state.selected.map(c => {
+            if (coin === c.id) {
+                let bool = !c.select;
+                return {
+                    id: c.id,
+                    select: bool
+                }
+            }
+            return c;
+        });
         this.setState({
             selected: updated
         });
     }
-
+    componentWillReceiveProps() {
+        this.setState({
+            selected: this.props.favorites.map(f => ({
+                id: f.id,
+                select: false
+            }))
+        });
+    }
     handleSubmit = () => {
+        console.log(this.state.selected);
         for (let i = 0; i < this.state.selected.length; i++) {
-            this.props.removeFavorite(this.state.selected[i]);
+            if (this.state.selected[i].select) {
+                console.log(this.state.selected[i].id)
+                this.props.removeFavorite(this.state.selected[i].id);
+            }
         }
         this.props.openDialog(dialogConsts.NO_DIALOG);
         this.setState({ selected: [] });
@@ -28,6 +48,14 @@ class EditFavoritesDialog extends Component {
     handleClose = () => {
         this.setState({ selected: [] });
         this.props.openDialog(dialogConsts.NO_DIALOG);
+    }
+    shouldDisable = () => {
+        for (let i = 0; i < this.state.selected.length; i++) {
+            if (this.state.selected[i].select) {
+                return false;
+            }
+        }
+        return true;
     }
 
     render() {
@@ -41,7 +69,7 @@ class EditFavoritesDialog extends Component {
                 label="Remove"
                 primary={true}
                 keyboardFocused={true}
-                disabled={this.state.selected.length === 0}
+                disabled={this.shouldDisable()}
                 onClick={() => this.handleSubmit()}
             />,
         ];
@@ -55,7 +83,7 @@ class EditFavoritesDialog extends Component {
                 {this.props.favorites.map((coin, index) => {
                     return <Checkbox
                         label={coin.id}
-                        key={index}
+                        key={coin.id}
                         onCheck={() => this.select(coin.id)}
                     />
                 })}
