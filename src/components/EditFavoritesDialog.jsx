@@ -24,6 +24,7 @@ class EditFavoritesDialog extends Component {
             selected: updated
         });
     }
+
     componentWillReceiveProps() {
         this.setState({
             selected: this.props.favorites.map(f => ({
@@ -32,6 +33,7 @@ class EditFavoritesDialog extends Component {
             }))
         });
     }
+
     handleSubmit = () => {
         for (let i = 0; i < this.state.selected.length; i++) {
             if (this.state.selected[i].select) {
@@ -46,6 +48,7 @@ class EditFavoritesDialog extends Component {
         this.setState({ selected: [] });
         this.props.openDialog(dialogConsts.NO_DIALOG);
     }
+
     shouldDisable = () => {
         for (let i = 0; i < this.state.selected.length; i++) {
             if (this.state.selected[i].select) {
@@ -64,7 +67,7 @@ class EditFavoritesDialog extends Component {
             />,
             < FlatButton
                 label="Remove"
-                primary={true}
+                secondary={true}
                 keyboardFocused={true}
                 disabled={this.shouldDisable()}
                 onClick={() => this.handleSubmit()}
