@@ -7,15 +7,15 @@
     "chart.js": "^2.7.2",
     "gh-pages": "^1.1.0",
     "humanize-plus": "^1.8.2",
-    "material-ui": "^0.19.4",
+    "material-ui": "^0.20.0",
     "material-ui-icons": "^1.0.0-beta.36",
     "moment": "^2.22.1",
     "react": "^16.3.2",
     "react-chartjs-2": "^2.7.0",
     "react-dom": "^16.3.2",
     "react-redux": "^5.0.7",
-    "react-scripts": "1.0.17",
-    "redux": "^3.7.2",
+    "react-scripts": "1.1.4",
+    "redux": "^4.0.0",
     "redux-localstore": "^0.2.1"
   },
   "scripts": {
