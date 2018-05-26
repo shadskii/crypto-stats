@@ -20,45 +20,44 @@ import { FontIcon } from 'material-ui';
 
 
 const App = ({ favoriteCoins, actions, view }) => (
-  <div className="wrapper">
-    <AppBar
-      title={'Crypto Stats'}
-      showMenuIconButton={false}
-      style={{ position: 'fixed' }}
-      iconElementRight={
-        <IconButton
-          onClick={() => actions.openDialog(dialogConsts.REMOVE_FAVORITE_DIALOG)}
-        >{
-            view.view === viewsConst.FAVORITE_PAGE ? <FontIcon className="fa fa-cog" /> : null}
-        </IconButton>}
-    />
-    {getPage(view.view, favoriteCoins, actions)}
-
+  <div>
     <AddFavoriteDialog
       dialog={view.dialog}
       addFavorite={actions.addFavorite}
       openDialog={actions.openDialog}
     />
-
     <EditFavoriteDialog
       dialog={view.dialog}
       removeFavorite={actions.removeFavorite}
       openDialog={actions.openDialog}
       favorites={favoriteCoins}
     />
-
-    <footer className="foot">
-      <Paper zDepth={3} >
-        <BottomNav
-          view={view}
-          changeView={actions.changeView}
-        />
-      </Paper>
-    </footer>
+    <div className="wrapper">
+      <AppBar
+        title={'Crypto Stats'}
+        showMenuIconButton={false}
+        style={{ position: 'fixed' }}
+        iconElementRight={
+          <IconButton
+            onClick={() => actions.openDialog(dialogConsts.REMOVE_FAVORITE_DIALOG)}
+          >{
+              view.view === viewsConst.FAVORITE_PAGE ? <FontIcon className="fa fa-cog" /> : null}
+          </IconButton>}
+      />
+      {getPage(view.view, favoriteCoins, actions)}
+      <footer className="foot">
+        <Paper zDepth={3} >
+          <BottomNav
+            view={view}
+            changeView={actions.changeView}
+          />
+        </Paper>
+      </footer>
+    </div>
   </div>
 );
 
-function getPage(view, favoriteCoins, actions) {
+function getPage (view, favoriteCoins, actions) {
   if (view === viewsConst.PRICE_PAGE) {
     return <PricePage />
   } else if (view === viewsConst.NEWS_PAGE) {
