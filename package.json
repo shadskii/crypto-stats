@@ -1,21 +1,21 @@
 {
   "name": "crypto-stats",
   "homepage": "https://shadskii.github.io/crypto-stats",
-  "version": "0.1.0",
+  "version": "2.0.0",
   "private": true,
   "dependencies": {
-    "chart.js": "^2.7.1",
-    "gh-pages": "^1.1.0",
+    "chart.js": "^2.7.3",
+    "gh-pages": "^2.0.1",
     "humanize-plus": "^1.8.2",
-    "material-ui": "^0.19.4",
-    "material-ui-icons": "^1.0.0-beta.17",
-    "moment": "^2.19.3",
-    "react": "^16.2.0",
-    "react-chartjs-2": "^2.6.4",
-    "react-dom": "^16.2.0",
-    "react-redux": "^5.0.7",
-    "react-scripts": "1.0.17",
-    "redux": "^3.7.2",
+    "material-ui": "^0.20.2",
+    "material-ui-icons": "^1.0.0-beta.36",
+    "moment": "^2.22.2",
+    "react": "^16.6.0",
+    "react-chartjs-2": "^2.7.4",
+    "react-dom": "^16.6.0",
+    "react-redux": "^5.1.0",
+    "react-scripts": "2.1.1",
+    "redux": "^4.0.1",
     "redux-localstore": "^0.2.1"
   },
   "scripts": {
@@ -25,5 +25,11 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  }
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }
